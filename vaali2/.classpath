@@ -30,7 +30,7 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Jar/mysql-connector-java-5.1.19-bin.jar"/>
-	<classpathentry kind="lib" path="C:/Jar/3.1.0/javax.servlet-api-3.1.0.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/mysql-connector-java-5.1.19-bin.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/3.1.0/javax.servlet-api-3.1.0.jar"/>
 	<classpathentry kind="output" path="target/vaali2-0.1.0-SNAPSHOT/WEB-INF/classes"/>
 </classpath>
