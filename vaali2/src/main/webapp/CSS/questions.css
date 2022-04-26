@@ -1,0 +1,115 @@
+@charset "ISO-8859-1";
+body{
+	
+
+	background-color: #6cc5d5;
+	font-family: helvetica;
+}
+
+
+h2 {
+	font-family: helvetica;
+	position: relative;
+	text-align: center;
+	color: white;
+	font-size: 65px;
+	text-shadow: 5px 5px #000000;
+	
+	
+}
+
+div {
+	text-align: center;
+}
+
+p {
+	font-size: 25px;
+}
+
+.radiogrp {
+	width: 100px;
+	display: inline-block;
+}
+
+.radiogrp input {
+	height: 25px;
+	width: 25px;
+}
+
+.radiogrp label {
+	display: block;
+}
+
+.number {
+	border-radius: 10px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 24px;
+	background-color: orange;
+	text-align: center;
+	width: 80px;
+	padding: 15px 15px;
+	box-shadow: 5px 10px;
+}
+
+.question {
+	text-align: center;
+	font-size: 30px;
+
+}
+
+.vaihtoehdot {
+	font-family: helvetica;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background-color: #f2f2f2;
+	padding: 30px;
+	width: 80%;
+}
+
+solid {
+	border-top: 3px solid #bbb;
+}
+
+.button {
+	border: none;
+	color: black;
+	background-color: orange;
+	padding: 20px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: block;
+	font-size: 20px;
+	margin: 4px 2px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+}
+
+.exitbutton
+{
+	
+	font-family: helvetica;
+	border: none;
+	color: black;
+	background-color: orange;
+	padding: 10px 15px;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 20px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #d35400;
+	color: white;
+}
+
+
+
+

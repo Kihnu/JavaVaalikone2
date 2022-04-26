@@ -1,0 +1,84 @@
+@charset "ISO-8859-1";
+
+body {
+	background-color: #6cc5d5;
+	font-family: helvetica;
+}
+
+h1 {
+	font-family: helvetica;
+	position: relative;
+	text-align: center;
+	color: white;
+	font-size: 55px;
+	text-shadow: 5px 5px #000000;
+}
+
+div {
+	font-family: helvetica;
+	position: relative;
+	text-align: center;
+	color: black;
+	font-size: 30px;
+}
+
+.average {
+	font-size: 50px;
+}
+
+.cand {
+	padding-top: 25px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #f2f2f2;
+	width: 80%;
+}
+
+.exitbutton {
+	font-family: helvetica;
+	border: none;
+	color: black;
+	background-color: orange;
+	padding: 10px 15px;
+	text-decoration: none;
+	font-size: 20px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	width: 205px;
+	margin-left: 5px;
+	float: left;
+}
+
+.backbutton {
+	font-family: helvetica;
+	border: none;
+	color: black;
+	background-color: orange;
+	padding: 10px 15px;
+	text-decoration: none;
+	font-size: 20px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	width: 205px;
+	margin-left: 10px;
+	float: left;
+}
+button:hover {
+	background-color: #d35400;
+	color: white;
+}
+
+.infobutton {
+	font-family: helvetica;
+	border: none;
+	color: black;
+	background-color: orange;
+	padding: 16px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
