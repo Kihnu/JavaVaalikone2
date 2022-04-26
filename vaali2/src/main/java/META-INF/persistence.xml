@@ -7,7 +7,12 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org
 	<persistence-unit name="Vaali2">
 <!-- All the classes, which belong to the peristence unit and so can be persisted using JPA
 	Here there is just one: app.Fish. All the other should be added in the same way. -->	
-<!-- 	<class>data.Fish</class> -->
+	<class>data.AnswerC</class>
+	<class>data.Candidates</class>
+	<class>data.Comparison</class>
+	<class>data.Questions</class>
+	<class>data.SingleCandidateAnswers</class>
+	<class>data.kuva</class>
 <!-- If using MySQL 5.7 or newer -->
 <!--  
 	as a root user in the MySQL command prompt give the commands:
