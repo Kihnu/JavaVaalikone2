@@ -25,9 +25,9 @@ public class Dao {
 	private Connection conn;
 
 	public Dao(String url, String user, String pass) {
-		this.url = url;
-		this.user = user;
-		this.pass = pass;
+		this.url = "jdbc:mysql://localhost:3306/vaalikone?useSSL=false";
+		this.user = "user";
+		this.pass = "password";
 	}
 
 	public boolean getConnection() {

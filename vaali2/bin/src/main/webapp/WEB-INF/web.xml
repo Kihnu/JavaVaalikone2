@@ -28,8 +28,9 @@
 		-->
 		<init-param>
 		  <param-name>jersey.config.server.provider.packages</param-name>
-		  <param-value>services</param-value>
+		  <param-value>services,exceptions</param-value>
 		</init-param>
+		
 		<!--
 			This tells the server to load REST service when the server starts
 		-->
@@ -44,5 +45,7 @@
 		<servlet-name>vaali2</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
+	
+	
   
 </web-app>
