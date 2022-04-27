@@ -2,7 +2,7 @@ package data;
 
 public class SingleCandidateAnswers {
 
-	private int answer_int;;
+	private int answer_int;
 	private String question;
 	
 	public SingleCandidateAnswers(String answer_int, String question) {
