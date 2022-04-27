@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DAO.Dao;
 import data.Candidates;
-import data.Questions;
+import data.Questionsvanha;
 
 /**
  * Servlet implementation class AdminRefresh
@@ -52,7 +52,7 @@ public class AdminRefresh extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		ArrayList<Questions> questionsList = null;
+		ArrayList<Questionsvanha> questionsList = null;
 		ArrayList<Candidates> candidatesList = null;
 		int rowsInserted;
 

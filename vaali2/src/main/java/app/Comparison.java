@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DAO.Dao;
 import data.Candidates;
-import data.Questions;
+import data.Questionsvanha;
 
 /**
  * Servlet implementation class Comparison
@@ -21,7 +21,7 @@ import data.Questions;
 public class Comparison extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Dao dao;
-	private Questions questions;
+	private Questionsvanha questionsvanha;
 
 	@Override
 	public void init() {
@@ -30,7 +30,7 @@ public class Comparison extends HttpServlet {
 		String password = getServletContext().getInitParameter("passwd");
 		
 		dao = new Dao(url, user, password);
-		questions = new Questions();
+		questionsvanha = new Questionsvanha();
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class Comparison extends HttpServlet {
 		
 		int number;
 
-		ArrayList<Questions> questionlist = null;
+		ArrayList<Questionsvanha> questionlist = null;
 		ArrayList<Candidates> candidates = null;
 		ArrayList<Integer> candidateanswers = null;
 
@@ -77,7 +77,7 @@ public class Comparison extends HttpServlet {
 			System.out.println("No connection to database");
 		}
 
-		for (int i = 0; i < questionlist.size(); i++) { // Niin kauan kun kysymyksiä riittää, katsotaan mitä äänestäjä on vastannut
+		for (int i = 0; i < questionlist.size(); i++) { // Niin kauan kun kysymyksiï¿½ riittï¿½ï¿½, katsotaan mitï¿½ ï¿½ï¿½nestï¿½jï¿½ on vastannut
 			String answer = request.getParameter("answer" + (i + 1));
 			if (answer.equals("option1")) {
 				number = 1;
@@ -90,17 +90,17 @@ public class Comparison extends HttpServlet {
 			} else {
 				number = 5;
 			}
-			userlist.add(questions.getId() + i, number);
+			userlist.add(questionsvanha.getId() + i, number);
 
 		}
 
 		int id;
 
-		for (id = 1; id < candidates.size() + 1; id++) { // Lisätään ehdokkaiden kaikki vastaukset omiin listoihinsa
+		for (id = 1; id < candidates.size() + 1; id++) { // Lisï¿½tï¿½ï¿½n ehdokkaiden kaikki vastaukset omiin listoihinsa
 			candidatelist = new ArrayList<>();
 			candidateanswers = dao.readCertainAnswersC(id);
 			for (int j = 0; j < candidateanswers.size(); j++) {
-				candidatelist.add(questions.getId() + j, candidateanswers.get(j));
+				candidatelist.add(questionsvanha.getId() + j, candidateanswers.get(j));
 			}
 			lists.add(candidatelist);
 			//System.out.println("Ehdokas " + id + " vastaukset: " + lists.get(id - 1));
@@ -115,24 +115,24 @@ public class Comparison extends HttpServlet {
 		
 		ArrayList<Integer> comparison = null;
 		
-		for (int x = 0; x < lists.size(); x++) { // Äänestäjän vastaukset verrataan ehdokkaiden vastauksiin
+		for (int x = 0; x < lists.size(); x++) { // ï¿½ï¿½nestï¿½jï¿½n vastaukset verrataan ehdokkaiden vastauksiin
 			comparison = new ArrayList<>();
 			candidatelist = lists.get(x);
 			for (y = 0; y < userlist.size(); y++ ) {
-				user_num = userlist.get(y); // Otetaan käyttäjän vastaus tiettyyn kysymykseen
+				user_num = userlist.get(y); // Otetaan kï¿½yttï¿½jï¿½n vastaus tiettyyn kysymykseen
 				candid_num = candidatelist.get(y); // Otetaan tietyn ehdokkaan vastaus samaan kysymykseen
-				int bigger = Math.max(user_num, candid_num); // Otetaan näistä kahdesta isompi
+				int bigger = Math.max(user_num, candid_num); // Otetaan nï¿½istï¿½ kahdesta isompi
 				int smaller = Math.min(user_num, candid_num); // Ja pienempi
 				int diff = bigger - smaller; // Isommasta miinustetaan pienempi luku
 				int percentage = diff * 25; // Kerrotaan erotus 25
 				int comp = 100 - percentage; // Miinustetaan edellinen luku 100:sta
-				comparison.add(comp); // Lisätään tulos listaan.
+				comparison.add(comp); // Lisï¿½tï¿½ï¿½n tulos listaan.
 			}
-			for (z = 0; z < comparison.size(); z++) { // Lisätään kaikki tulokset yhteen
+			for (z = 0; z < comparison.size(); z++) { // Lisï¿½tï¿½ï¿½n kaikki tulokset yhteen
 				sum = sum + comparison.get(z);
 			}
 			
-			int average = sum / comparison.size(); // Jaetaan kaikkien tuloksien summa verrattavien kohteiden määrällä
+			int average = sum / comparison.size(); // Jaetaan kaikkien tuloksien summa verrattavien kohteiden mï¿½ï¿½rï¿½llï¿½
 			//System.out.println("TAMA ON TULOSSA DATABASEE: " + (x+1) + " - " + average + " %");
 			dao.addComparison(x+1, average);
 			sum = 0;

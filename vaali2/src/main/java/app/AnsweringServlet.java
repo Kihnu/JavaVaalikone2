@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.Dao;
-import data.Questions;
+import data.Questionsvanha;
 
 /**
  * Servlet implementation class AnsweringServlet
@@ -45,7 +45,7 @@ public class AnsweringServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Questions> list = null;
+		ArrayList<Questionsvanha> list = null;
 
 		if (dao.getConnection()) {
 			list = dao.readAllQuestions();
