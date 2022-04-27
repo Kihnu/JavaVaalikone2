@@ -16,7 +16,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 
-import data.Question;
+import data.Questions;
 
 
 
@@ -30,10 +30,12 @@ import data.Question;
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	
-	public List<Question> readquestion() {
+
+	public List<Questions> readquestion() {
+
 		EntityManager em=emf.createEntityManager();
 		em.getTransaction().begin();
-		List<Question> list=em.createQuery("select xyx from Question xyx").getResultList();		
+		List<Questions> list=em.createQuery("select xyx from Question xyx").getResultList();		
 		em.getTransaction().commit();
 		return list;
 	}	
@@ -43,13 +45,13 @@ import data.Question;
 	@Path("/addquestion")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public List<Question> addquestion(Question question) {
+	public List<Questions> addquestion(Questions questions) {
 		EntityManager em=emf.createEntityManager();
 		em.getTransaction().begin();
-		em.persist(question);//The actual insertion line
+		em.persist(questions);//The actual insertion line
 		em.getTransaction().commit();
 		//Calling the method readFish() of this service
-		List<Question> list=readquestion();		
+		List<Questions> list=readquestion();		
 		return list;
 	}	
 	
@@ -58,16 +60,16 @@ import data.Question;
 	@Path("/updatequestion")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public List<Question> updatequestion(Question question) {
+	public List<Questions> updatequestion(Questions questions) {
 		EntityManager em=emf.createEntityManager();
 		em.getTransaction().begin();
-		Question q=em.find(Question.class, question.getId());
+		Questions q=em.find(Questions.class, questions.getId());
 		if (q!=null) {
-			em.merge(question);//The actual update line
+			em.merge(questions);//The actual update line
 		}
 		em.getTransaction().commit();
 		//Calling the method readFish() of this service
-		List<Question> list=readquestion();		
+		List<Questions> list=readquestion();		
 		return list;
 	}	
 	
@@ -75,26 +77,26 @@ import data.Question;
 	@Path("/deleteupdate/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public List<Question> deleteFish(@PathParam("id") int id) {
+	public List<Questions> deleteFish(@PathParam("id") int id) {
 		EntityManager em=emf.createEntityManager();
 		em.getTransaction().begin();
-		Question q=em.find(Question.class, id);
+		Questions q=em.find(Questions.class, id);
 		if (q!=null) {
 			em.remove(q);//The actual insertion line
 		}
 		em.getTransaction().commit();
 		//Calling the method readFish() of this service
-		List<Question> list=readquestion();		
+		List<Questions> list=readquestion();		
 		return list;
 	}	
 	@GET
 	@Path("/readtoupdatequestion/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Question readToUpdatequestion(@PathParam("id") int id) {
+	public Questions readToUpdatequestion(@PathParam("id") int id) {
 		EntityManager em=emf.createEntityManager();
 		em.getTransaction().begin();
-		Question q=em.find(Question.class, id);
+		Questions q=em.find(Questions.class, id);
 		em.getTransaction().commit();
 		return q;
 	}	

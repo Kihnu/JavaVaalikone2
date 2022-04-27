@@ -19,7 +19,7 @@ import javax.ws.rs.core.MediaType;
 
 import data.AnswersC;
 import data.Candidates;
-import data.Questions;
+import data.Questionsvanha;
 import data.Comparison;
 
 import java.sql.Connection;
@@ -64,8 +64,8 @@ public class Dao {
 	 * 
 	 * @return returns every question to a list.
 	 */
-	public ArrayList<Questions> readAllQuestions() {
-		ArrayList<Questions> list = new ArrayList<>();
+	public ArrayList<Questionsvanha> readAllQuestions() {
+		ArrayList<Questionsvanha> list = new ArrayList<>();
 		try {
 			Statement stmt = conn.createStatement();
 			String sql = "";
@@ -74,7 +74,7 @@ public class Dao {
 			statement.executeUpdate(sql);
 			ResultSet RS = stmt.executeQuery("select * from questions");
 			while (RS.next()) {
-				Questions q = new Questions();
+				Questionsvanha q = new Questionsvanha();
 				q.setId(RS.getInt("question_id"));
 				q.setQuestion(RS.getString("question"));
 				list.add(q);
