@@ -19,7 +19,7 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 
 
-import data.Question;
+import data.Questions;
 
 
 /**
@@ -43,7 +43,7 @@ public class HandleQuestions extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String action = request.getServletPath();
-		  List<Question> list=null;
+		  List<Questions> list=null;
 		  switch (action) {
 		  case "/addquestion":
 			  list=addquestion(request);break;
@@ -55,9 +55,15 @@ public class HandleQuestions extends HttpServlet {
 		  case "/readquestion":
 			  list=readquestion(request);break;
 		  case "/readtoupdatequestion":
+<<<<<<< HEAD
 			  Question q=readtoupdatequestion(request);
 			  request.setAttribute("questionlist", q);
 			  RequestDispatcher rd=request.getRequestDispatcher("./jsp/questionupdate.jsp");
+=======
+			  Questions q=readtoupdatequestion(request);
+			  request.setAttribute("question", q);
+			  RequestDispatcher rd=request.getRequestDispatcher("./jsp/questiontoupdateform.jsp");
+>>>>>>> main
 			  rd.forward(request, response);
 			  return;
 		  }
@@ -70,7 +76,7 @@ public class HandleQuestions extends HttpServlet {
 		
 		
 		
-		private Question readtoupdatequestion(HttpServletRequest request) {
+		private Questions readtoupdatequestion(HttpServletRequest request) {
 			
 			
 			//LUETAAN 1 KYSYMYS
@@ -80,13 +86,13 @@ public class HandleQuestions extends HttpServlet {
 			Client c=ClientBuilder.newClient();
 			WebTarget wt=c.target(uri);
 			Builder b=wt.request();
-			Question question=b.get(Question.class);
-			return question;
+			Questions questions=b.get(Questions.class);
+			return questions;
 		}
 		
 		
 		
-		private List<Question> addquestion(HttpServletRequest request) {
+		private List<Questions> addquestion(HttpServletRequest request) {
 			
 			
 			
@@ -94,27 +100,27 @@ public class HandleQuestions extends HttpServlet {
 			//LISÄTÄÄN KYSYMYS
 			
 			//A Fish object to send to our web-service 
-			Question q=new Question(request.getParameter("question"));
+			Questions q=new Questions(request.getParameter("question"));
 			System.out.println(q);
 			String uri = "http://127.0.0.1:8080/rest/questionservice/addquestion";
 			Client c=ClientBuilder.newClient();
 			WebTarget wt=c.target(uri);
 			Builder b=wt.request();
 			//Here we create an Entity of a Fish object as JSON string format
-			Entity<Question> e=Entity.entity(q,MediaType.APPLICATION_JSON);
+			Entity<Questions> e=Entity.entity(q,MediaType.APPLICATION_JSON);
 			//Create a GenericType to be able to get List of objects
 			//This will be the second parameter of post method
-			GenericType<List<Question>> genericList = new GenericType<List<Question>>() {};
+			GenericType<List<Questions>> genericList = new GenericType<List<Questions>>() {};
 			
 			//Posting data (Entity<ArrayList<DogBreed>> e) to the given address
-			List<Question> returnedList=b.post(e, genericList);
+			List<Questions> returnedList=b.post(e, genericList);
 			return returnedList;
 		}
 		
 		
 		//LUETAAN KYSYMYKSET
 		
-		private List<Question> readquestion(HttpServletRequest request) {
+		private List<Questions> readquestion(HttpServletRequest request) {
 			String id=request.getParameter("id");
 			String uri = "http://127.0.0.1:8080/rest/questionservice/readquestion";
 			Client c=ClientBuilder.newClient();
@@ -122,9 +128,9 @@ public class HandleQuestions extends HttpServlet {
 			Builder b=wt.request();
 			//Create a GenericType to be able to get List of objects
 			//This will be the second parameter of post method
-			GenericType<List<Question>> genericList = new GenericType<List<Question>>() {};
+			GenericType<List<Questions>> genericList = new GenericType<List<Questions>>() {};
 			
-			List<Question> returnedList=b.get(genericList);
+			List<Questions> returnedList=b.get(genericList);
 			return returnedList;
 		}
 		
@@ -132,22 +138,22 @@ public class HandleQuestions extends HttpServlet {
 		
 		//MUOKATAAN KYSYMYSTÄ
 		
-		private List<Question> updatequestion(HttpServletRequest request) {
+		private List<Questions> updatequestion(HttpServletRequest request) {
 			//A Fish object to send to our web-service 
-			Question q=new Question(request.getParameter("id"), request.getParameter("question"));
+			Questions q=new Questions(request.getParameter("id"), request.getParameter("question"));
 			System.out.println(q);
 			String uri = "http://127.0.0.1:8080/rest/questionservice/updatequestion";
 			Client c=ClientBuilder.newClient();
 			WebTarget wt=c.target(uri);
 			Builder b=wt.request();
 			//Here we create an Entity of a Fish object as JSON string format
-			Entity<Question> e=Entity.entity(q,MediaType.APPLICATION_JSON);
+			Entity<Questions> e=Entity.entity(q,MediaType.APPLICATION_JSON);
 			//Create a GenericType to be able to get List of objects
 			//This will be the second parameter of post method
-			GenericType<List<Question>> genericList = new GenericType<List<Question>>() {};
+			GenericType<List<Questions>> genericList = new GenericType<List<Questions>>() {};
 			
 			//Posting data (Entity<ArrayList<DogBreed>> e) to the given address
-			List<Question> returnedList=b.put(e, genericList);
+			List<Questions> returnedList=b.put(e, genericList);
 			return returnedList;
 		}
 		
@@ -157,7 +163,7 @@ public class HandleQuestions extends HttpServlet {
 		
 		//POISTETAAN KYSYMYS
 		
-		private List<Question> deletequestion(HttpServletRequest request) {
+		private List<Questions> deletequestion(HttpServletRequest request) {
 			String id=request.getParameter("id");
 			String uri = "http://127.0.0.1:8080/rest/questionservice/deletequestion/"+id;
 			Client c=ClientBuilder.newClient();
@@ -165,10 +171,10 @@ public class HandleQuestions extends HttpServlet {
 			Builder b=wt.request();
 			//Create a GenericType to be able to get List of objects
 			//This will be the second parameter of post method
-			GenericType<List<Question>> genericList = new GenericType<List<Question>>() {};
+			GenericType<List<Questions>> genericList = new GenericType<List<Questions>>() {};
 			
 			//Posting data (Entity<ArrayList<DogBreed>> e) to the given address
-			List<Question> returnedList=b.delete(genericList);
+			List<Questions> returnedList=b.delete(genericList);
 			return returnedList;
 		}
 		

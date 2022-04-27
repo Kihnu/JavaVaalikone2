@@ -1,33 +1,51 @@
 package data;
 
-public class Questions {
-	private int id;
-	private String question;
-	public Questions(String id, String question) {
-		setId(id);
-		this.question=question;
-	}
-	public Questions() {
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+public class Questions {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	private String id;
+	private String question;
+
+	
+	public Questions() {
 	}
-	public int getId() {
-		return id;
+
+	
+	public Questions(String question) {
+		
+		this.setQuestion(question);
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public Questions(String question, String string) {
+		
+		this.setQuestion(question);
+		this.id=string;
 	}
-	public void setId(String id) {
-		try {
-			this.id = Integer.parseInt(id);
-		}
-		catch(NumberFormatException | NullPointerException e) {
-			//Do nothing - the value of id won't be changed
-		}
-	}
+
+	
+	
+	
+	
+
 	public String getQuestion() {
 		return question;
 	}
+
 	public void setQuestion(String question) {
 		this.question = question;
 	}
+	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	
 }

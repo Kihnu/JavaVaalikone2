@@ -3,7 +3,7 @@
 
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
-<%@ page import="data.Questions"%>
+<%@ page import="data.Questionsvanha"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 

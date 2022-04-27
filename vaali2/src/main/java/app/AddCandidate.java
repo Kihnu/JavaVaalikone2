@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DAO.Dao;
 import data.Candidates;
-import data.Questions;
+import data.Questionsvanha;
 
 /**
  * Servlet implementation class AddCandidate
@@ -76,7 +76,7 @@ public class AddCandidate extends HttpServlet {
 
 			// tästä alkaa janeten sähläys
 
-			ArrayList<Questions> questionsList = dao.readAllQuestions();
+			ArrayList<Questionsvanha> questionsList = dao.readAllQuestions();
 			ArrayList<Candidates> candidatesList = dao.readAllCandidates();
 
 			int cand = candidatesList.size();

@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DAO.Dao;
 import data.Candidates;
-import data.Questions;
+import data.Questionsvanha;
 
 /**
  * Servlet implementation class AdminRefresh
@@ -31,11 +31,14 @@ public class AdminRefresh extends HttpServlet {
 
 	@Override
 	public void init() {
-		String url = getServletContext().getInitParameter("connection_url_admin");
-		String user = getServletContext().getInitParameter("username");
-		String password = getServletContext().getInitParameter("passwd");
+//		String url = getServletContext().getInitParameter("connection_url_admin");
+//		String user = getServletContext().getInitParameter("username");
+//		String password = getServletContext().getInitParameter("passwd");
+		String url = "jdbc:mysql://localhost:3306/vaalikone?useSSL=false";
+		String user = "user"; // KOVAKOODIA POISTA NÃ„Ã„!!!!!!!!!!!!!!!!!!!!!!!!!
+		String pass = "password";
 
-		dao = new Dao(url, user, password);
+		dao = new Dao(url, user, pass);
 	}
 
 	public AdminRefresh() {
@@ -49,7 +52,7 @@ public class AdminRefresh extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		ArrayList<Questions> questionsList = null;
+		ArrayList<Questionsvanha> questionsList = null;
 		ArrayList<Candidates> candidatesList = null;
 		int rowsInserted;
 
@@ -87,7 +90,7 @@ public class AdminRefresh extends HttpServlet {
 						+ "what varchar(600), vote_nro int(4) NOT NULL, PRIMARY KEY (candidate_id, vote_nro));";
 				statement.executeUpdate(sql);
 
-//				// Kuva sarake lisääminen
+//				// Kuva sarake lisï¿½ï¿½minen
 //				sql = "CREATE TABLE candidates (candidate_id int(3) NOT NULL AUTO_INCREMENT, surname varchar(30) NOT NULL, "
 //						+ "firstname varchar(30), age int(3), party varchar(30) NOT NULL, profession varchar(60), why varchar(600), "
 //						+ "what varchar(600), vote_nro int(4) NOT NULL, PRIMARY KEY (candidate_id, vote_nro), kuva_id longblob NOT NULL);";
@@ -107,7 +110,7 @@ public class AdminRefresh extends HttpServlet {
 				sql = "CREATE TABLE comparison (comp_id int(5) NOT NULL AUTO_INCREMENT, candidate_id int(3) NOT NULL, average int(3) NOT NULL, PRIMARY KEY (comp_id));";
 				statement.executeUpdate(sql);
 
-				// Candidates lisäys
+				// Candidates lisï¿½ys
 				sql = "INSERT INTO  candidates (surname, firstname, age, party, profession, why, what, vote_nro) VALUES (\"Duck\", \"Donald\", 36, \"Socialist\", \"Rubber bread\", \"In my opinion the amount of work an anthropomorphic animal has to do just to live their life normally is way too much.\", \"Something to occupy my feeble mind while I try to avoid working as much as I can.\", 313);";
 				statement.executeUpdate(sql);
 
@@ -144,7 +147,7 @@ public class AdminRefresh extends HttpServlet {
 					System.out.println("Nothing happened");
 				}
 
-				// Kysymysten lisäys
+				// Kysymysten lisï¿½ys
 				sql = "INSERT INTO questions (question) VALUES (\"Duckburg, Mouseville and Goosetown should all be combined into one big city.\");";
 				statement.executeUpdate(sql);
 				sql = "INSERT INTO questions (question) VALUES (\"The roads of Duckburg are in good condition.\");";
@@ -182,7 +185,7 @@ public class AdminRefresh extends HttpServlet {
 					System.out.println("Nothing happened");
 				}
 
-				// Answers lisäys
+				// Answers lisï¿½ys
 				Random rand = new Random();
 				questionsList = dao.readAllQuestions();
 				candidatesList = dao.readAllCandidates();
