@@ -25,9 +25,9 @@
 	<br>
 	<br>
 
-<!-- 	<form method="get" action="/AdminQuestions">
+	<form method="get" action="/readquestion">
 		<button type="submit" class="button">Edit Questions!</button>
-	</form> -->
+	</form>
 
 	<br>
 
