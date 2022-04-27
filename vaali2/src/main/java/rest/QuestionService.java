@@ -18,8 +18,6 @@ import javax.ws.rs.core.MediaType;
 
 import data.Questions;
 
-
-
 @Path("/questionservice")
 	public class QuestionService {
 
@@ -29,13 +27,10 @@ import data.Questions;
 	@Path("/readquestion")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	
-
 	public List<Questions> readquestion() {
-
 		EntityManager em=emf.createEntityManager();
 		em.getTransaction().begin();
-		List<Questions> list=em.createQuery("select xyx from Question xyx").getResultList();		
+		List<Questions> list=em.createQuery("select xyx from Questions xyx").getResultList();		
 		em.getTransaction().commit();
 		return list;
 	}	
@@ -50,7 +45,6 @@ import data.Questions;
 		em.getTransaction().begin();
 		em.persist(questions);//The actual insertion line
 		em.getTransaction().commit();
-		//Calling the method readFish() of this service
 		List<Questions> list=readquestion();		
 		return list;
 	}	
