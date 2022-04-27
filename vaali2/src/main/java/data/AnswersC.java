@@ -19,6 +19,14 @@ public class AnswersC {
 	public AnswersC() {
 	}
 
+	public AnswersC(String answerId, String CandidateId, String questionId, String answerint, String answerstring) {
+		this.setId(answerId);
+		this.setCandidateId(candidateId);
+		this.setQuestionId(questionId);
+		this.setanswerint(answerint);
+		this.answerstring = answerstring;
+	}
+
 	public int getId() {
 		return answerId;
 	}

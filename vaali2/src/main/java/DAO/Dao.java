@@ -6,11 +6,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import data.AnswersC;
 import data.Candidates;
 import data.Questions;
 import data.Comparison;
+
 import java.sql.Connection;
 import data.SingleCandidateAnswers;
 
@@ -23,10 +34,11 @@ public class Dao {
 	private String pass;
 	private String url;
 	private Connection conn;
+	EntityManagerFactory emf = Persistence.createEntityManagerFactory("vaali2");
 
 	public Dao(String url, String user, String pass) {
 		this.url = "jdbc:mysql://localhost:3306/vaalikone?useSSL=false";
-		this.user = "user";
+		this.user = "user";// KOVAKOODIA POISTA NÄÄ!!!!!!!!!!!!!!!!!!!!!!!!!
 		this.pass = "password";
 	}
 
@@ -47,8 +59,9 @@ public class Dao {
 		}
 	}
 
-
-	/** Reads all the questions so the voter can read and answer them.
+	/**
+	 * Reads all the questions so the voter can read and answer them.
+	 * 
 	 * @return returns every question to a list.
 	 */
 	public ArrayList<Questions> readAllQuestions() {
@@ -74,7 +87,9 @@ public class Dao {
 
 	}
 
-	/** Reads all the candidates and their informations.
+	/**
+	 * Reads all the candidates and their informations.
+	 * 
 	 * @return returns every candidate to a list.
 	 */
 	public ArrayList<Candidates> readAllCandidates() {
@@ -107,7 +122,9 @@ public class Dao {
 
 	}
 
-	/** Reads a certain one candidate.
+	/**
+	 * Reads a certain one candidate.
+	 * 
 	 * @param id is the unique number of the candidate.
 	 * @return returns a candidate with a certain id.
 	 */
@@ -141,7 +158,9 @@ public class Dao {
 		}
 	}
 
-	/** Reads all the answers the candidates have given.
+	/**
+	 * Reads all the answers the candidates have given.
+	 * 
 	 * @return returns every answer from the candidates.
 	 */
 	public ArrayList<AnswersC> readAllAnswersC() {
@@ -168,7 +187,9 @@ public class Dao {
 
 	}
 
-	/** Reads a certain answer from the candidates.
+	/**
+	 * Reads a certain answer from the candidates.
+	 * 
 	 * @param id is the unique number for answers.
 	 * @return returns certains answers from candidates.
 	 */
@@ -193,9 +214,12 @@ public class Dao {
 
 	}
 
-	/** Adds the calculated numbers for the candidates.
+	/**
+	 * Adds the calculated numbers for the candidates.
+	 * 
 	 * @param candidate is the unique id for a candidate.
-	 * @param average is the number of how many percent the candidate and voter agree with each others.
+	 * @param average   is the number of how many percent the candidate and voter
+	 *                  agree with each others.
 	 * @return returns the percentage to a list.
 	 */
 	public ArrayList<Integer> addComparison(int candidate, int average) {
@@ -213,7 +237,9 @@ public class Dao {
 		return list;
 	}
 
-	/** Updates already existing candidate's information.
+	/**
+	 * Updates already existing candidate's information.
+	 * 
 	 * @param c is the candidate that is going to be added.
 	 * @return returns all candidates with updated information.
 	 */
@@ -241,7 +267,9 @@ public class Dao {
 		}
 	}
 
-	/** Deletes a candidate from the database.
+	/**
+	 * Deletes a candidate from the database.
+	 * 
 	 * @param id is the unique number for the candidate.
 	 * @return returns all the candidates that are left.
 	 */
@@ -263,7 +291,10 @@ public class Dao {
 		}
 	}
 
-	/** Reads all the comparison numbers and orders them from the highest number to the lowest.
+	/**
+	 * Reads all the comparison numbers and orders them from the highest number to
+	 * the lowest.
+	 * 
 	 * @return returns every comparison between the voter and candidates to a list.
 	 */
 	public ArrayList<Comparison> readAllComparison() {
@@ -295,15 +326,17 @@ public class Dao {
 		}
 	}
 
-	/** Adds a new candidate.
-	 * @param surname is the surname of the candidate.
-	 * @param firstname is the first name of the candidate.
-	 * @param age is the age of the candidate.
-	 * @param party is the party of the candidate.
+	/**
+	 * Adds a new candidate.
+	 * 
+	 * @param surname    is the surname of the candidate.
+	 * @param firstname  is the first name of the candidate.
+	 * @param age        is the age of the candidate.
+	 * @param party      is the party of the candidate.
 	 * @param profession is the profession of the candidate.
-	 * @param why is why the candidate is running for the office.
-	 * @param what is what the candidate wants to do when they get elected.
-	 * @param vote_nro is the number you will be voting for.
+	 * @param why        is why the candidate is running for the office.
+	 * @param what       is what the candidate wants to do when they get elected.
+	 * @param vote_nro   is the number you will be voting for.
 	 * @return returns all the candidates to a list with the new candidate.
 	 */
 	public ArrayList<Candidates> addCandidate(String surname, String firstname, int age, String party,
@@ -326,7 +359,9 @@ public class Dao {
 	}
 
 	// Tietylle kandidaatille kysymykset ja niille vastaukset
-	/** Reads a certain candidate and all the answers for them.
+	/**
+	 * Reads a certain candidate and all the answers for them.
+	 * 
 	 * @param id is the id for the candidate.
 	 * @return returns the questions and candidates to a list.
 	 */
@@ -358,4 +393,20 @@ public class Dao {
 
 	}
 
+	
+//	--------------TÄÄ ON VIEL VÄHÄ MIETINNÄSSÄ ET TEHÄÄNKÖ SE DAOSSA VAI AnswerServisessä-------------
+//	public ArrayList<AnswersC> EditAnswers(AnswersC candidateId) {
+//		ArrayList<AnswersC> list = new ArrayList<>();
+//		EntityManager em=emf.createEntityManager();
+//		em.getTransaction().begin();
+//		AnswersC a=em.find(AnswersC.class, candidateId.getCandidateId());
+//		if (a!=null) {
+//			em.merge(candidateId);//The actual update line
+//		}
+//		em.getTransaction().commit();
+//		return list;
+//
+//	}
+
 }
+

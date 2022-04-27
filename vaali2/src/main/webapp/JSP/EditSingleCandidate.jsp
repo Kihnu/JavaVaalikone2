@@ -40,6 +40,12 @@
 				<br>
 				<button type="submit" class="button">Edit</button>
 			</form>
+			
+			<form action="/EditAnswers" method="post">
+				<input hidden=hidden name="id" value="${requestScope.candidate.id}"
+					readonly />
+				<button type="submit" class="button">Edit answers</button>
+			</form>
 
 			<form action="/DeleteCandidate" method="post">
 				<input hidden=hidden name="id" value="${requestScope.candidate.id}"
