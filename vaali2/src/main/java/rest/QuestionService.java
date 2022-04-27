@@ -30,7 +30,6 @@ import data.Question;
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	
-	
 	public List<Question> readquestion() {
 		EntityManager em=emf.createEntityManager();
 		em.getTransaction().begin();

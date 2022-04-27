@@ -1,7 +1,8 @@
 package app;
 
-import java.io.IOException;
-import java.util.List;
+
+import java.io.*;
+import java.util.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,13 +27,21 @@ import data.Question;
  */
 @WebServlet(urlPatterns = {"/addquestion", "/deletequestion","/updatequestion","/readquestion","/readtoupdatequestion"})
 public class HandleQuestions extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	
+	@Override
+	public void doPost(HttpServletRequest request, HttpServletResponse response) 
+	
+	throws ServletException, IOException {
+	doGet(request, response);
+		
+	}
     
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		
 		String action = request.getServletPath();
 		  List<Question> list=null;
 		  switch (action) {
@@ -47,14 +56,15 @@ public class HandleQuestions extends HttpServlet {
 			  list=readquestion(request);break;
 		  case "/readtoupdatequestion":
 			  Question q=readtoupdatequestion(request);
-			  request.setAttribute("question", q);
-			  RequestDispatcher rd=request.getRequestDispatcher("./jsp/questiontoupdateform.jsp");
+			  request.setAttribute("questionlist", q);
+			  RequestDispatcher rd=request.getRequestDispatcher("./jsp/questionupdate.jsp");
 			  rd.forward(request, response);
 			  return;
 		  }
-		  request.setAttribute("questions", list);
-		  RequestDispatcher rd=request.getRequestDispatcher("./jsp/questionform.jsp");
+		  request.setAttribute("question", list);
+		  RequestDispatcher rd=request.getRequestDispatcher("./jsp/Questionform.jsp");
 		  rd.forward(request, response);
+		  
 	}
 
 		
@@ -168,11 +178,8 @@ public class HandleQuestions extends HttpServlet {
 	
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-			
-	throws ServletException, IOException {
-		
+
 
 	 
 
-}}
+}
