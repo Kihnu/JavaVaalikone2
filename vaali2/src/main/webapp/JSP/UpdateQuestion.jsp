@@ -11,11 +11,11 @@
 </head>
  <h1>TOimiiko?</h1>
 <body>
-<%-- <form action='../updatequestion' method='post'>
-<input type='text' name='id' value='${requestScope.question.id }'>
-<input type='text' name='question' value='${requestScope.question.question }'>
+<form action='../updatequestion' method='post'>
+<input type='text' name='id' value='${requestScope.questionlist.id}'>
+<input type='text' name='question' value='${requestScope.questionlist.question}'>
 <input type='submit' name='ok' value='OK'>
-</form> --%>
+</form>
 
 </body>
 </html>

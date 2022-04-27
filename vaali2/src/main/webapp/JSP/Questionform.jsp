@@ -15,7 +15,7 @@
 <input type='submit' name='ok' value='OK'>
 </form>
 <ol>
-<c:forEach var="question" items="${requestScope.questionlist}">
+<c:forEach var="question" items="${requestScope.question}">
 	<li>${question} 
 	
 	<%-- <a href='../deletequestion?id=${question.id}'>Delete</a> <a href='../readtoupdatequestion?id=${question.id}'>Update</a> --%>

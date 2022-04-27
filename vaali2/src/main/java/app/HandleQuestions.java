@@ -28,6 +28,15 @@ import data.Questions;
 @WebServlet(urlPatterns = {"/addquestion", "/deletequestion","/updatequestion","/readquestion","/readtoupdatequestion"})
 public class HandleQuestions extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+
+
+
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 	
@@ -35,9 +44,7 @@ public class HandleQuestions extends HttpServlet {
 	doGet(request, response);
 		
 	}
-    
 
-	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
@@ -56,9 +63,9 @@ public class HandleQuestions extends HttpServlet {
 			  list=readquestion(request);break;
 		  case "/readtoupdatequestion":
 
-			  Question q=readtoupdatequestion(request);
+			  Questions q=readtoupdatequestion(request);
 			  request.setAttribute("questionlist", q);
-			  RequestDispatcher rd=request.getRequestDispatcher("./jsp/questionupdate.jsp");
+			  RequestDispatcher rd=request.getRequestDispatcher("./jsp/UpdateQuestion.jsp");
 
 			  rd.forward(request, response);
 			  return;

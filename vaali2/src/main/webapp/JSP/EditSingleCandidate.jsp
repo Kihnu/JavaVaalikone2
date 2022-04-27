@@ -41,7 +41,7 @@
 				<button type="submit" class="button">Edit</button>
 			</form>
 			
-			<form action="/EditAnswers" method="post">
+			<form action="/rest/EditAnswers" method="post">
 				<input hidden=hidden name="id" value="${requestScope.candidate.id}"
 					readonly />
 				<button type="submit" class="button">Edit answers</button>
