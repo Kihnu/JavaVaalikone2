@@ -55,15 +55,11 @@ public class HandleQuestions extends HttpServlet {
 		  case "/readquestion":
 			  list=readquestion(request);break;
 		  case "/readtoupdatequestion":
-<<<<<<< HEAD
+
 			  Question q=readtoupdatequestion(request);
 			  request.setAttribute("questionlist", q);
 			  RequestDispatcher rd=request.getRequestDispatcher("./jsp/questionupdate.jsp");
-=======
-			  Questions q=readtoupdatequestion(request);
-			  request.setAttribute("question", q);
-			  RequestDispatcher rd=request.getRequestDispatcher("./jsp/questiontoupdateform.jsp");
->>>>>>> main
+
 			  rd.forward(request, response);
 			  return;
 		  }

@@ -25,11 +25,9 @@
 	<br>
 	<br>
 
-<<<<<<< HEAD
+
 	<form method="get" action="/readquestion">
-=======
-	<form method="get" action="/addquestion">
->>>>>>> main
+
 		<button type="submit" class="button">Edit Questions!</button>
 	</form>
 

@@ -30,12 +30,9 @@ import data.Questions;
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	
-<<<<<<< HEAD
-	public List<Question> readquestion() {
-=======
-	
+
 	public List<Questions> readquestion() {
->>>>>>> main
+
 		EntityManager em=emf.createEntityManager();
 		em.getTransaction().begin();
 		List<Questions> list=em.createQuery("select xyx from Question xyx").getResultList();		
