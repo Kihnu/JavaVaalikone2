@@ -7,7 +7,7 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org
 	<persistence-unit name="vaali2">
 <!-- All the classes, which belong to the peristence unit and so can be persisted using JPA
 	Here there is just one: app.Fish. All the other should be added in the same way. -->	
-	<class>data.AnswerC</class>
+	<class>data.AnswersC</class>
 	<class>data.Candidates</class>
 	<class>data.Comparison</class>
 	<class>data.Questions</class>
