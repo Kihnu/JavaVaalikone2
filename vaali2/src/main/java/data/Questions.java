@@ -8,7 +8,7 @@ public class Questions {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
-	private String id;
+	private String question_id;
 	private String question;
 
 	
@@ -21,10 +21,10 @@ public class Questions {
 		this.setQuestion(question);
 	}
 
-	public Questions(String question, String string) {
+	public Questions(String question, String question_id) {
 		
 		this.setQuestion(question);
-		this.id=string;
+		this.question_id=question_id;
 	}
 
 	
@@ -42,10 +42,10 @@ public class Questions {
 	
 	
 	public String getId() {
-		return id;
+		return question_id;
 	}
 	public void setId(String id) {
-		this.id = id;
+		this.question_id = id;
 	}
 	
 }
