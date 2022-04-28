@@ -14,13 +14,17 @@ buildNumber.properties
 # Eclipse m2e generated files
 # Eclipse Core
 .project
+
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+/.classpath
 
 /metadata/
-/.metadata/
-vaali/.classpath
+.metadata
 
-# Ignoraa kaikki tämän sisällä
-.classpath
-/.classpath
+
+
+
+# Ignore Logs
+logs
+*.log
