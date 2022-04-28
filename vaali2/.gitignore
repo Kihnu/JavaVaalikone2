@@ -1,1 +1,8 @@
 /target/
+
+/.metadata/
+vaali/.classpath
+
+# Ignoraa kaikki tämän sisällä
+.classpath
+/.classpath
