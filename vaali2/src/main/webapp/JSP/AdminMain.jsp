@@ -26,7 +26,7 @@
 	<br>
 
 
-	<form method="get" action="../readquestion">
+	<form method="get" action="rest/questionservice/readquestion">
 
 		<button type="submit" class="button">Edit Questions!</button>
 	</form>

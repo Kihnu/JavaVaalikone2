@@ -56,6 +56,8 @@
 			<artifactId>appengine-api-1.0-sdk</artifactId>
 			<version>2.0.4</version>
 		</dependency>
+		
+		
 
 		<!-- BEGIN: Added by Pena -->
 		<!-- This dependency is needed for annotations (e.g. @Path, @Consumes, 

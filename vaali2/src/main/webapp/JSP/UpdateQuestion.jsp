@@ -9,7 +9,7 @@
 
 
 </head>
- <h1>TOimiiko?</h1>
+ <h1>updatequestions</h1>
 <body>
 <form action='../updatequestion' method='post'>
 <input type='text' name='id' value='${requestScope.questionlist.id}'>

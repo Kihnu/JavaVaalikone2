@@ -8,17 +8,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
- <h1>TOimiiko?</h1>
+ <h1>questionform</h1>
 <body>
-<form action='../addquestion' method='post'>
-<input type='text' name='question' value=''>
-<input type='submit' name='ok' value='OK'>
-</form>
+
 <ol>
-<c:forEach var="question" items="${requestScope.question}">
+<c:forEach var="question" items="${requestScope.questionlist}">
 	<li>${question} 
 	
-	<%-- <a href='../deletequestion?id=${question.id}'>Delete</a> <a href='../readtoupdatequestion?id=${question.id}'>Update</a> --%>
+	<a href='../deletequestion?id=${question.id}'>Delete</a> <a href='../readtoupdatequestion?id=${question.id}'>Update</a>
 	
 	
 </c:forEach>
