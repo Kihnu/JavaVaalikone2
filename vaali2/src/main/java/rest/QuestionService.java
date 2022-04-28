@@ -39,7 +39,7 @@ import data.Questions;
 	@Path("/readquestion")
 	@Produces(MediaType.APPLICATION_JSON)
 
-	public void readquestion() {
+	public List<Questions> readquestion() {
 		EntityManager em=emf.createEntityManager();
 		em.getTransaction().begin();
 		List<Questions> list=em.createQuery("select a from Questions a").getResultList();		
@@ -55,63 +55,94 @@ import data.Questions;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 	
 	}	
 	
-	/*
-	 * @POST
-	 * 
-	 * @Path("/addquestion")
-	 * 
-	 * @Produces(MediaType.APPLICATION_JSON)
-	 * 
-	 * @Consumes(MediaType.APPLICATION_JSON) public List<Questions>
-	 * addquestion(Questions questions) { EntityManager
-	 * em=emf.createEntityManager(); em.getTransaction().begin();
-	 * em.persist(questions);//The actual insertion line
-	 * em.getTransaction().commit(); List<Questions> list=readquestion(); return
-	 * list; }
-	 * 
-	 * 
-	 * @PUT
-	 * 
-	 * @Path("/updatequestion")
-	 * 
-	 * @Produces(MediaType.APPLICATION_JSON)
-	 * 
-	 * @Consumes(MediaType.APPLICATION_JSON) public List<Questions>
-	 * updatequestion(Questions questions) { EntityManager
-	 * em=emf.createEntityManager(); em.getTransaction().begin(); Questions
-	 * q=em.find(Questions.class, questions.getId()); if (q!=null) {
-	 * em.merge(questions);//The actual update line } em.getTransaction().commit();
-	 * //Calling the method readFish() of this service List<Questions>
-	 * list=readquestion(); return list; }
-	 * 
-	 * @DELETE
-	 * 
-	 * @Path("/deleteupdate/{id}")
-	 * 
-	 * @Produces(MediaType.APPLICATION_JSON)
-	 * 
-	 * @Consumes(MediaType.APPLICATION_JSON) public List<Questions>
-	 * deleteFish(@PathParam("id") int id) { EntityManager
-	 * em=emf.createEntityManager(); em.getTransaction().begin(); Questions
-	 * q=em.find(Questions.class, id); if (q!=null) { em.remove(q);//The actual
-	 * insertion line } em.getTransaction().commit(); //Calling the method
-	 * readFish() of this service List<Questions> list=readquestion(); return list;
-	 * }
-	 * 
-	 * @GET
-	 * 
-	 * @Path("/readtoupdatequestion/{id}")
-	 * 
-	 * @Produces(MediaType.APPLICATION_JSON)
-	 * 
-	 * @Consumes(MediaType.APPLICATION_JSON) public Questions
-	 * readToUpdatequestion(@PathParam("id") int id) { EntityManager
-	 * em=emf.createEntityManager(); em.getTransaction().begin(); Questions
-	 * q=em.find(Questions.class, id); em.getTransaction().commit(); return q; }
-	 */
+	
+	  @POST
+	  
+	  @Path("/addquestion")
+	  
+	  @Produces(MediaType.APPLICATION_JSON)
+	  
+	  @Consumes(MediaType.APPLICATION_JSON) public List<Questions>
+	  addquestion(Questions questions) { EntityManager
+	  em=emf.createEntityManager(); em.getTransaction().begin();
+	  em.persist(questions);//The actual insertion line
+	  em.getTransaction().commit(); 
+	  List<Questions> list=readquestion();
+	  
+	  return list; 
+	  
+	  }
+	  
+	  
+	  @PUT
+	  
+	  @Path("/updatequestion")
+	  
+	  @Produces(MediaType.APPLICATION_JSON)
+	  
+	  @Consumes(MediaType.APPLICATION_JSON) 
+	  
+	  public List<Questions> updatequestion(Questions questions) { 
+		  
+		  EntityManager em=emf.createEntityManager();
+		  em.getTransaction().begin();
+		  Questions q=em.find(Questions.class, questions.getQuestion_id());
+	  
+	  if (q!=null) {
+		  em.merge(questions);
+	  }
+		em.getTransaction().commit();
+		  //The actual update line } em.getTransaction().commit();
+		  //Calling the method readFish() of this service List<Questions>
+		  List<Questions> list=readquestion();
+		  return list; 
+	  
+	  }
+	  
+	  @DELETE
+	  @Path("/deleteupdate/{id}")
+	  @Produces(MediaType.APPLICATION_JSON)
+	  @Consumes(MediaType.APPLICATION_JSON)
+	  
+	  public List<Questions> deleteFish(@PathParam("Question_id") int question_id) { 
+		  
+		  EntityManager em =emf.createEntityManager();
+		  em.getTransaction().begin(); 
+		  Questions q=em.find(Questions.class, question_id);
+		  
+		  if (q!=null) {
+			  
+			  em.remove(q);
+		
+		  	} em.getTransaction().commit();
+		  	
+		  List<Questions> list= readquestion();
+		 
+		  return list;
+	  }
+	  
+
+	  
+	  @GET
+	  @Path("/readtoupdatequestion/{id}")
+	  @Produces(MediaType.APPLICATION_JSON)
+	  @Consumes(MediaType.APPLICATION_JSON)
+	  
+	  public Questions
+	  readToUpdatequestion(@PathParam("id") int question_id) { 
+	EntityManager em=emf.createEntityManager(); 
+	em.getTransaction().begin();
+	
+	Questions q=em.find(Questions.class, question_id);
+	em.getTransaction().commit();
+	return q;
+	
+	  }
+	 
 	
 	
 	

@@ -55,7 +55,7 @@ public class HandleQuestions extends HttpServlet {
 		  case "/addquestion":
 			  list=addquestion(request);break;
 		  case "/deletequestion":
-			  String id=request.getParameter("id");
+			  String question_id=request.getParameter("question_id");
 			  list=deletequestion(request);break;
 		  case "/updatequestion":
 			  list=updatequestion(request);break;
@@ -84,8 +84,8 @@ public class HandleQuestions extends HttpServlet {
 			
 			//LUETAAN 1 KYSYMYS
 			
-			String id=request.getParameter("id");
-			String uri = "http://127.0.0.1:8080/rest/questionservice/readtoupdatequestion/"+id;
+			String question_id=request.getParameter("question_id");
+			String uri = "http://127.0.0.1:8080/rest/questionservice/readtoupdatequestion/"+question_id;
 			Client c=ClientBuilder.newClient();
 			WebTarget wt=c.target(uri);
 			Builder b=wt.request();
@@ -124,7 +124,7 @@ public class HandleQuestions extends HttpServlet {
 		//LUETAAN KYSYMYKSET
 		
 		private List<Questions> readquestion(HttpServletRequest request) {
-			String id=request.getParameter("id");
+			String question_id=request.getParameter("question_id");
 			String uri = "http://127.0.0.1:8080/rest/questionservice/readquestion";
 			Client c=ClientBuilder.newClient();
 			WebTarget wt=c.target(uri);
@@ -143,7 +143,7 @@ public class HandleQuestions extends HttpServlet {
 		
 		private List<Questions> updatequestion(HttpServletRequest request) {
 			//A Fish object to send to our web-service 
-			Questions q=new Questions(request.getParameter("id"), request.getParameter("question"));
+			Questions q=new Questions(request.getParameter("question_id"), request.getParameter("question"));
 			System.out.println(q);
 			String uri = "http://127.0.0.1:8080/rest/questionservice/updatequestion";
 			Client c=ClientBuilder.newClient();
@@ -167,8 +167,8 @@ public class HandleQuestions extends HttpServlet {
 		//POISTETAAN KYSYMYS
 		
 		private List<Questions> deletequestion(HttpServletRequest request) {
-			String id=request.getParameter("id");
-			String uri = "http://127.0.0.1:8080/rest/questionservice/deletequestion/"+id;
+			String question_id=request.getParameter("question_id");
+			String uri = "http://127.0.0.1:8080/rest/questionservice/deletequestion/"+question_id;
 			Client c=ClientBuilder.newClient();
 			WebTarget wt=c.target(uri);
 			Builder b=wt.request();
