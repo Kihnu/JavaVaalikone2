@@ -21,10 +21,6 @@ import javax.ws.rs.core.MediaType;
 
 import data.Questions;
 
-
-/**
- * Servlet implementation class HandleQuestions
- */
 @WebServlet(urlPatterns = {"/addquestion", "/deletequestion","/updatequestion","/readquestion","/readtoupdatequestion"})
 public class HandleQuestions extends HttpServlet {
 
@@ -35,6 +31,9 @@ public class HandleQuestions extends HttpServlet {
 	throws ServletException, IOException {
 	doGet(request, response);
 		
+	
+	
+	
 	}
 
 	@Override
@@ -43,24 +42,30 @@ public class HandleQuestions extends HttpServlet {
 		
 		String action = request.getServletPath();
 		  List<Questions> list=null;
+		  
 		  switch (action) {
 		  case "/addquestion":
 			  list=addquestion(request);break;
+			  
+			  
 		  case "/deletequestion":
 			  String question_id=request.getParameter("question_id");
 			  list=deletequestion(request);break;
+			  
+			  
 		  case "/updatequestion":
 			  list=updatequestion(request);break;
+			  
 		  case "/readquestion":
 			  list=readquestion(request);break;
+			  
 		  case "/readtoupdatequestion":
 
 			  Questions q=readtoupdatequestion(request);
 			  request.setAttribute("question", q);
 			  RequestDispatcher rd=request.getRequestDispatcher("./jsp/UpdateQuestion.jsp");
-
 			  rd.forward(request, response);
-		
+			  return;
 		  }
 		  request.setAttribute("questionlist", list);
 		  RequestDispatcher rd=request.getRequestDispatcher("./jsp/Questionform.jsp");

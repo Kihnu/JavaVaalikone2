@@ -6,9 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Edit the questions!</title>
 </head>
- <h1>question form</h1>
+ <h1>Edit the questions!</h1>
 <body>
 
 <form action='../addquestion' method='post'>
