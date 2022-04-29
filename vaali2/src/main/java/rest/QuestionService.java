@@ -1,15 +1,12 @@
 package rest;
 
-import java.io.IOException;
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,7 +15,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 
@@ -28,53 +24,36 @@ import data.Questions;
 	public class QuestionService {
 
 	EntityManagerFactory emf=Persistence.createEntityManagerFactory("vaali2");
-	@Context
-	HttpServletRequest request;
-	
-	@Context
-	HttpServletResponse response;
-	
-	
 	@GET
 	@Path("/readquestion")
 	@Produces(MediaType.APPLICATION_JSON)
-
-	public List<Questions> readquestion() {
+	@Consumes(MediaType.APPLICATION_JSON) 
+	public List <Questions> readquestion() {
 		EntityManager em=emf.createEntityManager();
 		em.getTransaction().begin();
 		List<Questions> list=em.createQuery("select a from Questions a").getResultList();		
 		em.getTransaction().commit();
-		RequestDispatcher rd = request.getRequestDispatcher("/JSP/Questionform.jsp");
-		
-		request.setAttribute("questionlist", list);
-		
-		
-		try {
-			rd.forward(request, response);
-		} catch (ServletException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+		return list;
 	
 	}	
 	
 	
 	  @POST
-	  
 	  @Path("/addquestion")
-	  
 	  @Produces(MediaType.APPLICATION_JSON)
+	  @Consumes(MediaType.APPLICATION_JSON) 
 	  
-	  @Consumes(MediaType.APPLICATION_JSON) public List<Questions>
-	  addquestion(Questions questions) { EntityManager
-	  em=emf.createEntityManager(); em.getTransaction().begin();
+	  public List <Questions> addquestion(Questions questions) { 
+		 
+	  EntityManager em=emf.createEntityManager(); 
+	  em.getTransaction().begin();
 	  em.persist(questions);//The actual insertion line
+	 
 	  em.getTransaction().commit(); 
-	  List<Questions> list=readquestion();
 	  
-	  return list; 
+	   List<Questions> list=readquestion();	
 	  
+		return list;
 	  }
 	  
 	  
@@ -96,19 +75,18 @@ import data.Questions;
 		  em.merge(questions);
 	  }
 		em.getTransaction().commit();
-		  //The actual update line } em.getTransaction().commit();
-		  //Calling the method readFish() of this service List<Questions>
-		  List<Questions> list=readquestion();
-		  return list; 
+		
+	 List<Questions> list=readquestion();
+	  return list; 
 	  
 	  }
 	  
 	  @DELETE
-	  @Path("/deleteupdate/{id}")
+	  @Path("/deletequestion/{id}")
 	  @Produces(MediaType.APPLICATION_JSON)
 	  @Consumes(MediaType.APPLICATION_JSON)
 	  
-	  public List<Questions> deleteFish(@PathParam("Question_id") int question_id) { 
+	  public List<Questions> deletequestion(@PathParam("question_id") int question_id) { 
 		  
 		  EntityManager em =emf.createEntityManager();
 		  em.getTransaction().begin(); 
@@ -118,7 +96,8 @@ import data.Questions;
 			  
 			  em.remove(q);
 		
-		  	} em.getTransaction().commit();
+		  	} 
+		  em.getTransaction().commit();
 		  	
 		  List<Questions> list= readquestion();
 		 
@@ -132,14 +111,13 @@ import data.Questions;
 	  @Produces(MediaType.APPLICATION_JSON)
 	  @Consumes(MediaType.APPLICATION_JSON)
 	  
-	  public Questions
-	  readToUpdatequestion(@PathParam("id") int question_id) { 
+	  public Questions readToUpdatequestion(@PathParam("question_id") int question_id) { 
 	EntityManager em=emf.createEntityManager(); 
 	em.getTransaction().begin();
 	
 	Questions q=em.find(Questions.class, question_id);
-	em.getTransaction().commit();
-	return q;
+	em.getTransaction().commit(); 
+	return q; 
 	
 	  }
 	 

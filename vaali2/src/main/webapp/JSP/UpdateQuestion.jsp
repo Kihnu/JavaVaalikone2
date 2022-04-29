@@ -1,19 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 
 
 </head>
- <h1>updatequestions</h1>
+ <h1>update questions</h1>
 <body>
-<form action='../updatequestion' method='post'>
-<input type='text' name='id' value='${requestScope.questionlist.id}'>
-<input type='text' name='question' value='${requestScope.questionlist.question}'>
+<form  action='../readtoupdatequestion' method='post' >
+<input type='text' name='id' value='${requestScope.questions.question_id}'>
+<input type='text' name='question' value='${requestScope.questions.question}'>
 <input type='submit' name='ok' value='OK'>
 </form>
 

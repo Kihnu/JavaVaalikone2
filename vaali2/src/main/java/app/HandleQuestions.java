@@ -27,14 +27,6 @@ import data.Questions;
  */
 @WebServlet(urlPatterns = {"/addquestion", "/deletequestion","/updatequestion","/readquestion","/readtoupdatequestion"})
 public class HandleQuestions extends HttpServlet {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-
-
 
 
 	@Override
@@ -64,13 +56,13 @@ public class HandleQuestions extends HttpServlet {
 		  case "/readtoupdatequestion":
 
 			  Questions q=readtoupdatequestion(request);
-			  request.setAttribute("questionlist", q);
+			  request.setAttribute("question", q);
 			  RequestDispatcher rd=request.getRequestDispatcher("./jsp/UpdateQuestion.jsp");
 
 			  rd.forward(request, response);
-			  return;
+		
 		  }
-		  request.setAttribute("question", list);
+		  request.setAttribute("questionlist", list);
 		  RequestDispatcher rd=request.getRequestDispatcher("./jsp/Questionform.jsp");
 		  rd.forward(request, response);
 		  
@@ -103,7 +95,7 @@ public class HandleQuestions extends HttpServlet {
 			//LISÄTÄÄN KYSYMYS
 			
 			//A Fish object to send to our web-service 
-			Questions q=new Questions(request.getParameter("questions"));
+			Questions q=new Questions(request.getParameter("question"));
 			System.out.println(q);
 			String uri = "http://127.0.0.1:8080/rest/questionservice/addquestion";
 			Client c=ClientBuilder.newClient();
