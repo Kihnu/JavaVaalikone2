@@ -58,11 +58,8 @@ import data.Questions;
 	  
 	  
 	  @PUT
-	  
 	  @Path("/updatequestion")
-	  
 	  @Produces(MediaType.APPLICATION_JSON)
-	  
 	  @Consumes(MediaType.APPLICATION_JSON) 
 	  
 	  public List<Questions> updatequestion(Questions questions) { 
@@ -71,13 +68,13 @@ import data.Questions;
 		  em.getTransaction().begin();
 		  Questions q=em.find(Questions.class, questions.getQuestion_id());
 	  
-	  if (q!=null) {
-		  em.merge(questions);
-	  }
-		em.getTransaction().commit();
+		  if (q!=null) {
+			  em.merge(questions);
+		  }
+		  	em.getTransaction().commit();
 		
-	 List<Questions> list=readquestion();
-	  return list; 
+		  	List<Questions> list=readquestion();
+		  	return list; 
 	  
 	  }
 	  
@@ -112,18 +109,14 @@ import data.Questions;
 	  @Consumes(MediaType.APPLICATION_JSON)
 	  
 	  public Questions readToUpdatequestion(@PathParam("question_id") int question_id) { 
-	EntityManager em=emf.createEntityManager(); 
-	em.getTransaction().begin();
+		  EntityManager em=emf.createEntityManager(); 
+		  em.getTransaction().begin();
 	
-	Questions q=em.find(Questions.class, question_id);
-	em.getTransaction().commit(); 
-	return q; 
+		  Questions q=em.find(Questions.class, question_id);
+		  em.getTransaction().commit(); 
+		  return q; 
 	
 	  }
 	 
-	
-	
-	
-	
 	
 }

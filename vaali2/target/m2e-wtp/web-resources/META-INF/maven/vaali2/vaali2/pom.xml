@@ -62,6 +62,16 @@
 		<!-- BEGIN: Added by Pena -->
 		<!-- This dependency is needed for annotations (e.g. @Path, @Consumes, 
 			@Produces etc.) in the REST-class -->
+			
+			
+			 <dependency>
+        
+  	  <groupId>javax.xml.bind</groupId>
+   	 <artifactId>jaxb-api</artifactId>
+   	 <version>2.3.1</version>
+    
+	</dependency>
+			
 		<dependency>
 			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-json-jackson</artifactId>
