@@ -18,7 +18,9 @@
 
 <ol>
 <c:forEach var="questions" items="${requestScope.questionlist}">
-	<li>${questions.question} 
+
+
+	<li>${questions.question}
 	
 	<a href='../deletequestion?id=${questions.question_id}'>Delete</a> <a href='../readtoupdatequestion?id=${questions.question_id}'>Update</a>
 	

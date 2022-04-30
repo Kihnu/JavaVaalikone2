@@ -11,9 +11,9 @@
 </head>
  <h1>update questions</h1>
 <body>
-<form  action='../readtoupdatequestion' method='post' >
-<input type='text' name='id' value='${requestScope.questions.question_id}'>
-<input type='text' name='question' value='${requestScope.questions.question}'>
+<form  action='../updatequestion' method='post' >
+<label>${requestScope.questions.question_id}</label><br>
+<textarea rows="3" cols="55" name="question">${requestScope.questions.question}</textarea>
 <input type='submit' name='ok' value='OK'>
 </form>
 
