@@ -12,7 +12,7 @@
  <h1>update questions</h1>
 <body>
 <form  action='../updatequestion' method='post' >
-<label>${requestScope.questions.question_id}</label><br>
+<input type="text" name="id" value="${requestScope.questions.question_id}" readonly/> <br>
 <textarea rows="3" cols="55" name="question">${requestScope.questions.question}</textarea>
 <input type='submit' name='ok' value='OK'>
 </form>

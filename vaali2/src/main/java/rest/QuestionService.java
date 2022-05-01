@@ -59,7 +59,6 @@ public class QuestionService {
 	@Path("/updatequestion")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-
 	public List<Questions> updatequestion(Questions questions) {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
