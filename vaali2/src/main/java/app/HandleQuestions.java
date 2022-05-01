@@ -93,7 +93,6 @@ public class HandleQuestions extends HttpServlet {
 
 		// A Fish object to send to our web-service
 		Questions q = new Questions(request.getParameter("question"));
-		System.out.println(q);
 		String uri = "http://127.0.0.1:8080/rest/questionservice/addquestion";
 		Client c = ClientBuilder.newClient();
 		WebTarget wt = c.target(uri);
