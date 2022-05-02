@@ -37,11 +37,12 @@
 				<!-- i:n nykyisestä määrästä tehdään variable -->
 				<c:set var="num" value="<%=i%>" />
 				<!-- jos i on isompi kuin kysymysten määrä -->
-				<c:if test="${(num > max)}">
+				<input hidden="hidden" value="<%=i++%>">
+				<c:if test="${(num >= max)}">
 					<!-- i:stä tulee taas 1 (Piilotin sen numeron tällä muuten numero 1 on aina näkyvissä)-->
 					<input hidden="hidden" value="<%=i = 1%>">
 				</c:if>
-				<input hidden="hidden" value="<%=i++%>">
+				
 				<br>
 				<br>
 
