@@ -10,37 +10,37 @@ public class CandidateAnswers {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int question_id;
-	private String question;
+	private int candidateanswer_id;
+	private String candidateanswer;
 	
 	public CandidateAnswers() {
 	}
 	
-	public CandidateAnswers(String question) {
-		this.question = question; 
+	public CandidateAnswers(String candidateanswer) {
+		this.candidateanswer = candidateanswer; 
 	}
 	
-	public CandidateAnswers(int question_id, String question) {
-		this.question_id = question_id;
-		this.question = question; 
+	public CandidateAnswers(int candidateanswer_id, String candidateanswer) {
+		this.candidateanswer_id = candidateanswer_id;
+		this.candidateanswer = candidateanswer; 
 	}
 	
-	public CandidateAnswers(String question_id, String question) {
-		this.setCandidateAnswer_id(question_id);
-		this.question = question;
+	public CandidateAnswers(String candidateanswer_id, String candidateanswer) {
+		this.setCandidateAnswer_id(candidateanswer_id);
+		this.candidateanswer = candidateanswer;
 	}
 
 	public int getCandidateAnswer_id() {
-		return question_id;
+		return candidateanswer_id;
 	}
 	
-	public void setCandidateAnswer_id(int question_id) {
-		this.question_id = question_id;
+	public void setCandidateAnswer_id(int candidateanswer_id) {
+		this.candidateanswer_id = candidateanswer_id;
 	}
 	
-	public void setCandidateAnswer_id(String question_id) {
+	public void setCandidateAnswer_id(String candidateanswer_id) {
 		try {
-			this.question_id = Integer.parseInt(question_id);
+			this.candidateanswer_id = Integer.parseInt(candidateanswer_id);
 		}
 		catch (NumberFormatException | NullPointerException e) {
 			//Do nothing - the value is not changed
@@ -48,15 +48,15 @@ public class CandidateAnswers {
 	}
 
 	public String getCandidateAnswer() {
-		return question;
+		return candidateanswer;
 	}
 	
 
-	public void setCandidateAnswer(String question) {
-		this.question = question;
+	public void setCandidateAnswer(String candidateanswer) {
+		this.candidateanswer = candidateanswer;
 	}
 
 	public String toString() {
-		return this.question_id+": "+this.question;
+		return this.candidateanswer_id+": "+this.candidateanswer;
 	}
 }
