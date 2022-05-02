@@ -17,6 +17,7 @@ import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 
+import DAO.Dao;
 import data.Questions;
 
 @WebServlet(urlPatterns = { "/addquestion", "/deletequestion", "/updatequestion", "/readquestion",
@@ -27,6 +28,17 @@ public class HandleQuestions extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	private Dao dao;
+	
+	@Override
+	public void init() {
+		String url = getServletContext().getInitParameter("connection_url_admin");
+		String user = getServletContext().getInitParameter("username");
+		String password = getServletContext().getInitParameter("passwd");
+		
+		dao = new Dao(url, user, password);
+	}
 
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -49,7 +61,7 @@ public class HandleQuestions extends HttpServlet {
 			break;
 
 		case "/deletequestion":
-			String question_id = request.getParameter("question_id");
+			//String question_id = request.getParameter("question_id");
 			list = deletequestion(request);
 			break;
 
@@ -68,6 +80,8 @@ public class HandleQuestions extends HttpServlet {
 			rd.forward(request, response);
 			return;
 		}
+		
+		dao.autoIncrement("questions");
 		request.setAttribute("questionlist", list);
 		RequestDispatcher rd = request.getRequestDispatcher("./jsp/Questionform.jsp");
 		rd.forward(request, response);

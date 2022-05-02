@@ -16,6 +16,7 @@
 <title>Questions</title>
 </head>
 <body>
+	<%!int i = 1;%>
 
 	<form method="get" action="/index.html">
 		<button type="submit" class=exitbutton>Front Page</button>
@@ -28,12 +29,21 @@
 			<c:forEach var="questions" items="${requestScope.questionlist}">
 				<br>
 				<br>
-				<p class="number">${questions.id}/${questionlist.size()}</p>
+				<p class="number"><%=i++%>/${questionlist.size()}
+				</p>
 
+				<!-- Kysymysten määrästä tehdään variable -->
+				<c:set var="max" value="${questionlist.size()}" />
+				<!-- i:n nykyisestä määrästä tehdään variable -->
+				<c:set var="i" value="<%=i%>" />
+				<!-- jos i on isompi kuin kysymysten määrä -->
+				<c:if test="${(i > max)}">
+					<!-- i:stä tulee taas 1 (Piilotin sen numeron tällä muuten numero 1 on aina näkyvissä)-->
+					<input hidden="hidden" value="<%=i = 1%>">
+				</c:if>
 
-			 <br> <br>
-
-
+				<br>
+				<br>
 
 				<div class="question">${questions.question}
 					<br> <br>
@@ -67,6 +77,7 @@
 				</div>
 
 				<hr class="solid">
+
 			</c:forEach>
 
 			<br> <br>
@@ -78,9 +89,9 @@
 		</p>
 
 	</form>
-<!-- 	<form action="/Results"> -->
-<!-- 		<button type="submit" class="button">Submit your answers</button> -->
-<!-- 	</form> -->
+	<!-- 	<form action="/Results"> -->
+	<!-- 		<button type="submit" class="button">Submit your answers</button> -->
+	<!-- 	</form> -->
 </body>
 
 </html>
