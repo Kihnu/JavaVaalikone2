@@ -4,17 +4,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
+<link rel="stylesheet" href=CSS/Questionsedit.css>
 <title>Insert title here</title>
 
 
 </head>
- <h1>update questions</h1>
+
+<br>
+<br>
+ <h1>Update Question:</h1>
 <body>
-<form  action='../updatequestion' method='post' >
-<input type="text" name="id" value="${requestScope.questions.question_id}" readonly/> <br>
-<textarea rows="3" cols="55" name="question">${requestScope.questions.question}</textarea>
-<input type='submit' name='ok' value='OK'>
+<form  class= "form" action='../updatequestion' method='post' >
+${requestScope.questions.question_id}.<br>
+<br>
+<textarea rows="3" cols="55" name="question" required>${requestScope.questions.question} </textarea>
+<br>
+<br>
+<input type='submit' class= "ok" name='ok' value='OK'>
 </form>
 
 </body>
