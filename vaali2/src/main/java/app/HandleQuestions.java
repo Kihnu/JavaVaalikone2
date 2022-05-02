@@ -58,10 +58,12 @@ public class HandleQuestions extends HttpServlet {
 		switch (action) {
 		case "/addquestion":
 			list = addquestion(request);
+			dao.newQuestion();
 			break;
 
 		case "/deletequestion":
 			//String question_id = request.getParameter("question_id");
+			dao.autoIncrement("answers");
 			list = deletequestion(request);
 			break;
 
@@ -176,6 +178,7 @@ public class HandleQuestions extends HttpServlet {
 
 		// Posting data (Entity<ArrayList<DogBreed>> e) to the given address
 		List<Questions> returnedList = b.delete(genericList);
+		dao.deleteQuestion(question_id);
 		return returnedList;
 	}
 

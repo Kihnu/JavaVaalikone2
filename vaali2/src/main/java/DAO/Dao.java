@@ -6,9 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.util.Random;
 
 import data.AnswersC;
 import data.Candidates;
@@ -398,6 +396,56 @@ public class Dao {
 			System.out.println("Auto increment: " + e.getMessage());
 		}
 		
+	}
+	
+	public void newQuestion() {
+		try {
+			conn = DriverManager.getConnection(url, user, pass);
+			String sql = "";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			sql = "use vaalikone";
+			stmt.executeUpdate(sql);
+			
+			Random rand = new Random();
+			ArrayList<Questionsvanha> questionsList = readAllQuestions();
+			ArrayList<Candidates> candidatesList = readAllCandidates();
+			int cand;
+			int id = questionsList.size();
+
+			for (cand = 1; cand < candidatesList.size() + 1; cand++) {
+
+				try {
+					int r = rand.nextInt(5) + 1;
+
+					sql = "INSERT INTO answers (candidate_id, question_id, answer_int) VALUES (" + cand + "," + id
+							+ ", " + r + ");";
+					stmt.executeUpdate(sql);
+
+				} catch (SQLException e) {
+					System.out.println("Candidate: " + cand + " Question: " + id + ": " + e.getMessage());
+
+				}
+
+			}
+		} catch (SQLException e1) {
+			System.out.println("insert question: " + e1.getMessage());
+			
+		}
+	}
+	
+	public ArrayList<Candidates> deleteQuestion(String id) {
+		try {
+			conn = DriverManager.getConnection(url, user, pass);
+			Statement stmt = conn.createStatement();
+			String sql = "use vaalikone;";
+			stmt.executeUpdate(sql);
+			sql = "delete from answers where question_id=" + id;
+			stmt.executeUpdate(sql);
+			return readAllCandidates();
+		} catch (SQLException e) {
+			System.out.println("Deletoi kyssäri: " + e.getMessage());
+			return null;
+		}
 	}
 
 }
