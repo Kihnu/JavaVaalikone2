@@ -24,7 +24,7 @@ public class CandidateAnswerService {
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("vaali2");
 
 	@GET
-	@Path("/readquestion")
+	@Path("/readcandidateanswer")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public List<CandidateAnswers> readcandidateanswer() {
@@ -38,7 +38,7 @@ public class CandidateAnswerService {
 	}
 
 	@POST
-	@Path("/addquestion")
+	@Path("/addcandidateanswer")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 
@@ -76,7 +76,7 @@ public class CandidateAnswerService {
 	}
 
 	@DELETE
-	@Path("/deletecandidateanswer/{id}") // deletecandidateanswer
+	@Path("/deletecandidateanswer/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 
