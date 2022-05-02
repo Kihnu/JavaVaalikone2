@@ -41,7 +41,7 @@
 <c:forEach var="questions" items="${requestScope.questionlist}">
 
 
-<br>
+
 <br>
 	${questions.question_id}. ${questions.question} 
 
@@ -51,8 +51,8 @@
 	
 	
 	<a href='../deletequestion?id=${questions.question_id}'>Delete</a> <a href='../readtoupdatequestion?id=${questions.question_id}'>Update</a>
-		<br>
-
+		<br><br>
+<hr class="solid">
 </c:forEach>
 </ol>
 </body>
