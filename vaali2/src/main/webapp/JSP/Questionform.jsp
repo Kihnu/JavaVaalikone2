@@ -12,7 +12,7 @@
 <body>
 
 <form action='../addquestion' method='post'>
-<input type='text' name='question' value=''>
+<textarea rows="3" cols="55" name="question"></textarea>
 <input type='submit' name='ok' value='OK'>
 </form>
 

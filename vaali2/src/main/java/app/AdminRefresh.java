@@ -31,12 +31,12 @@ public class AdminRefresh extends HttpServlet {
 
 	@Override
 	public void init() {
-//		String url = getServletContext().getInitParameter("connection_url_admin");
-//		String user = getServletContext().getInitParameter("username");
-//		String password = getServletContext().getInitParameter("passwd");
-		String url = "jdbc:mysql://localhost:3306/vaalikone?useSSL=false";
-		String user = "user"; // KOVAKOODIA POISTA NÄÄ!!!!!!!!!!!!!!!!!!!!!!!!!
-		String pass = "password";
+		String url = getServletContext().getInitParameter("connection_url_admin");
+		String user = getServletContext().getInitParameter("username");
+		String pass = getServletContext().getInitParameter("passwd");
+//		String url = "jdbc:mysql://localhost:3306/vaalikone?useSSL=false";
+//		String user = "user"; // KOVAKOODIA POISTA NÄÄ!!!!!!!!!!!!!!!!!!!!!!!!!
+//		String pass = "password";
 
 		dao = new Dao(url, user, pass);
 	}
@@ -60,15 +60,15 @@ public class AdminRefresh extends HttpServlet {
 
 			String sql = "";
 			// Miten ottaa DAOsta
-//			String dbURL = "jdbc:mysql://localhost:3306/";
-//			String username = "user";
-//			String password = "password";
-			String url = getServletContext().getInitParameter("connection_url_admin");
-			String user = getServletContext().getInitParameter("username");
-			String password = getServletContext().getInitParameter("passwd");
+			String dbURL = "jdbc:mysql://localhost:3306/";
+			String username = "user";
+			String password = "password";
+//			String url = getServletContext().getInitParameter("connection_url_admin");
+//			String user = getServletContext().getInitParameter("username");
+//			String password = getServletContext().getInitParameter("passwd");
 
 			try {
-				Connection conn = DriverManager.getConnection(url, user, password);
+				Connection conn = DriverManager.getConnection(dbURL, username, password);
 
 				if (conn != null) {
 					System.out.println("Connected!");
