@@ -6,16 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import data.AnswersC;
 import data.Candidates;
@@ -34,11 +27,10 @@ public class Dao {
 	private String pass;
 	private String url;
 	private Connection conn;
-	EntityManagerFactory emf = Persistence.createEntityManagerFactory("vaali2");
 
 	public Dao(String url, String user, String pass) {
 		this.url = "jdbc:mysql://localhost:3306/vaalikone?useSSL=false";
-		this.user = "user";// KOVAKOODIA POISTA NÄÄ!!!!!!!!!!!!!!!!!!!!!!!!!
+		this.user = "user";// KOVAKOODIA
 		this.pass = "password";
 	}
 
@@ -393,20 +385,19 @@ public class Dao {
 
 	}
 
-	
-//	--------------TÄÄ ON VIEL VÄHÄ MIETINNÄSSÄ ET TEHÄÄNKÖ SE DAOSSA VAI AnswerServisessä-------------
-//	public ArrayList<AnswersC> EditAnswers(AnswersC candidateId) {
-//		ArrayList<AnswersC> list = new ArrayList<>();
-//		EntityManager em=emf.createEntityManager();
-//		em.getTransaction().begin();
-//		AnswersC a=em.find(AnswersC.class, candidateId.getCandidateId());
-//		if (a!=null) {
-//			em.merge(candidateId);//The actual update line
-//		}
-//		em.getTransaction().commit();
-//		return list;
-//
-//	}
+	public void autoIncrement(String command) {
+		try {
+			conn = DriverManager.getConnection(url, user, pass);
+			String sql = "";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			sql = "use vaalikone";
+			statement.executeUpdate(sql);
+			sql = "alter table " + command + " auto_increment = 1";
+			statement.executeUpdate(sql);
+		} catch (SQLException e) {
+			System.out.println("Auto increment: " + e.getMessage());
+		}
+		
+	}
 
 }
-

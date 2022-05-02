@@ -6,19 +6,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Edit the questions!</title>
 </head>
- <h1>TOimiiko?</h1>
+ <h1>Edit the questions!</h1>
 <body>
+
 <form action='../addquestion' method='post'>
-<input type='text' name='question' value=''>
+<textarea rows="3" cols="55" name="question"></textarea>
 <input type='submit' name='ok' value='OK'>
 </form>
+
 <ol>
-<c:forEach var="question" items="${requestScope.question}">
-	<li>${question} 
+<c:forEach var="questions" items="${requestScope.questionlist}">
+
+
+	<li>${questions.question}
 	
-	<%-- <a href='../deletequestion?id=${question.id}'>Delete</a> <a href='../readtoupdatequestion?id=${question.id}'>Update</a> --%>
+	<a href='../deletequestion?id=${questions.question_id}'>Delete</a> <a href='../readtoupdatequestion?id=${questions.question_id}'>Update</a>
 	
 	
 </c:forEach>
