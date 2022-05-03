@@ -32,17 +32,16 @@
 				<p class="number"><%=i%>/${questionlist.size()}
 				</p>
 
-				<!-- Kysymysten määrästä tehdään variable -->
+				<!-- Kysymysten mÃ¤Ã¤rÃ¤stÃ¤ tehdÃ¤Ã¤n variable -->
 				<c:set var="max" value="${questionlist.size()}" />
-				<!-- i:n nykyisestä määrästä tehdään variable -->
+				<!-- i:n nykyisestÃ¤ mÃ¤Ã¤rÃ¤stÃ¤ tehdÃ¤Ã¤n variable -->
 				<c:set var="num" value="<%=i%>" />
-				<!-- jos i on isompi kuin kysymysten määrä -->
+				<!-- jos i on isompi kuin kysymysten mÃ¤Ã¤rÃ¤ -->
 				<input hidden="hidden" value="<%=i++%>">
 				<c:if test="${(num >= max)}">
-					<!-- i:stä tulee taas 1 (Piilotin sen numeron tällä muuten numero 1 on aina näkyvissä)-->
+					<!-- i:stÃ¤ tulee taas 1 (Piilotin sen numeron tÃ¤llÃ¤ muuten numero 1 on aina nÃ¤kyvissÃ¤)-->
 					<input hidden="hidden" value="<%=i = 1%>">
 				</c:if>
-				
 				<br>
 				<br>
 

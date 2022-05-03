@@ -11,6 +11,9 @@
 
 
 </head>
+<form method="get" action="/readquestion">
+		<button type="submit" class="exitbutton">Back</button>
+	</form>
 
 <br>
 <br>

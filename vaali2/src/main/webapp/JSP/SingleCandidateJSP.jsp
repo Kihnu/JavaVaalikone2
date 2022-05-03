@@ -74,7 +74,10 @@
 
 			<h3>
 				Question
-				<%=i%>: ${candi.question}
+				<%=i%>: ${candi.question} 
+
+
+	
 			</h3>
 			
 			<!-- Kysymysten määrästä tehdään variable -->
