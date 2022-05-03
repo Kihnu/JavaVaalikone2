@@ -74,8 +74,22 @@
 
 			<h3>
 				Question
-				<%=i%>: ${candi.question}
+				<%=i%>: ${candi.question} 
+
+
+	
 			</h3>
+			
+			<!-- Kysymysten määrästä tehdään variable -->
+				<c:set var="max" value="${singleCandidate.size()}" />
+				<!-- i:n nykyisestä määrästä tehdään variable -->
+				<c:set var="num" value="<%=i%>" />
+				<!-- jos i on isompi kuin kysymysten määrä -->
+				<input hidden="hidden" value="<%=i++%>">
+				<c:if test="${(num >= max)}">
+					<!-- i:stä tulee taas 1 (Piilotin sen numeron tällä muuten numero 1 on aina näkyvissä)-->
+					<input hidden="hidden" value="<%=i = 1%>">
+				</c:if>
 
 			<%-- <div>${candi.answer_int}</div> --%>
 			<!--  -->
@@ -96,9 +110,6 @@
 					Strongly Agree 
 				</c:otherwise>
 			</c:choose>
-			<%
-				i++;
-			%>
 		</div>
 
 	</c:forEach>
