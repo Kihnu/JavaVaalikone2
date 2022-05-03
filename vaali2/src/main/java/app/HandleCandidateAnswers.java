@@ -61,7 +61,7 @@ public class HandleCandidateAnswers extends HttpServlet {
 			break;
 
 		case "/deletecandidateanswer":
-			//String question_id = request.getParameter("question_id");
+			//String question_id = request.getParameter("candidateanswer_id");
 			list = deleteCandidateAnswer(request);
 			break;
 
@@ -106,8 +106,8 @@ public class HandleCandidateAnswers extends HttpServlet {
 		// Lisätään kandidaatin vastaus
 
 		// A CandidateAnswers object to send to our web-service
-		CandidateAnswers ca = new CandidateAnswers(request.getParameter("question"));
-		String uri = "http://127.0.0.1:8080/rest/questionservice/addquestion";
+		CandidateAnswers ca = new CandidateAnswers(request.getParameter("candidateanswer"));
+		String uri = "http://127.0.0.1:8080/rest/candidateanswerervice/addcandidateanswer";
 		Client c = ClientBuilder.newClient();
 		WebTarget wt = c.target(uri);
 		Builder b = wt.request();
