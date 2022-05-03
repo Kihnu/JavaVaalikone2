@@ -74,7 +74,10 @@
 
 			<h3>
 				Question
-				<%=i%>: ${candi.question}
+				<%=i%>: ${candi.question} 
+
+
+	
 			</h3>
 
 			<%-- <div>${candi.answer_int}</div> --%>
