@@ -9,6 +9,7 @@
 <link rel="stylesheet" href=CSS/Questionsedit.css>
 
 
+
 <title>Edit the questions!</title>
 </head>
 
@@ -32,7 +33,7 @@
 
 <br>
 <br>
-<input type='submit' class= "ok" name='ok' value='OK'>
+<input type='submit' class= "ok" name='ok' value='OK' onclick="return alert('New question added!')" >
 
 </form>
 	</div>
@@ -48,11 +49,21 @@
 	<br>
 	
 	
+
+
+	
+
+	
+	<a href='../deletequestion?id=${questions.question_id}'onclick="return confirm('Are you sure you want to delete the question?')"  >Delete</a> 
 	
 	
-	<a href='../deletequestion?id=${questions.question_id}'>Delete</a> <a href='../readtoupdatequestion?id=${questions.question_id}'>Update</a>
+
+	<a href='../readtoupdatequestion?id=${questions.question_id}'>Update</a>
+		<br>
+
 		<br><br>
 <hr class="solid">
+
 </c:forEach>
 </ol>
 </body>
