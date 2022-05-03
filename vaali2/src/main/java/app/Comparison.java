@@ -79,6 +79,7 @@ public class Comparison extends HttpServlet {
 
 		for (int i = 0; i < questionlist.size(); i++) { // Niin kauan kun kysymyksi� riitt��, katsotaan mit� ��nest�j� on vastannut
 			String answer = request.getParameter("answer" + (i + 1));
+			System.out.println("kysymys " + (i+1) + " - " + answer);
 			if (answer.equals("option1")) {
 				number = 1;
 			} else if (answer.equals("option2")) {

@@ -29,19 +29,19 @@
 			<c:forEach var="questions" items="${requestScope.questionlist}">
 				<br>
 				<br>
-				<p class="number"><%=i++%>/${questionlist.size()}
+				<p class="number"><%=i%>/${questionlist.size()}
 				</p>
 
-				<!-- Kysymysten määrästä tehdään variable -->
+				<!-- Kysymysten mÃ¤Ã¤rÃ¤stÃ¤ tehdÃ¤Ã¤n variable -->
 				<c:set var="max" value="${questionlist.size()}" />
-				<!-- i:n nykyisestä määrästä tehdään variable -->
-				<c:set var="i" value="<%=i%>" />
-				<!-- jos i on isompi kuin kysymysten määrä -->
-				<c:if test="${(i > max)}">
-					<!-- i:stä tulee taas 1 (Piilotin sen numeron tällä muuten numero 1 on aina näkyvissä)-->
+				<!-- i:n nykyisestÃ¤ mÃ¤Ã¤rÃ¤stÃ¤ tehdÃ¤Ã¤n variable -->
+				<c:set var="num" value="<%=i%>" />
+				<!-- jos i on isompi kuin kysymysten mÃ¤Ã¤rÃ¤ -->
+				<input hidden="hidden" value="<%=i++%>">
+				<c:if test="${(num >= max)}">
+					<!-- i:stÃ¤ tulee taas 1 (Piilotin sen numeron tÃ¤llÃ¤ muuten numero 1 on aina nÃ¤kyvissÃ¤)-->
 					<input hidden="hidden" value="<%=i = 1%>">
 				</c:if>
-
 				<br>
 				<br>
 
@@ -50,28 +50,28 @@
 				</div>
 
 				<div class="radiogrp">
-					<input type="radio" name="answer${questions.id}" value="option1"
+					<input type="radio" name="answer${num}" value="option1"
 						id="radio_1" required><label for="radio_1">Strongly
 						Disagree </label> <br> <br>
 				</div>
 				<div class="radiogrp">
-					<input type="radio" name="answer${questions.id}" value="option2"
+					<input type="radio" name="answer${num}"  value="option2"
 						id="radio_2" required><label for="radio_2">Somewhat
 						Disagree </label> <br> <br>
 				</div>
 				<div class="radiogrp">
-					<input type="radio" name="answer${questions.id}" value="option3"
+					<input type="radio" name="answer${num}" value="option3"
 						id="radio_3" checked required><label for="radio_3"
 						style="transform: translateY(-25%);"><br>In between</label> <br>
 					<br>
 				</div>
 				<div class="radiogrp">
-					<input type="radio" name="answer${questions.id}" value="option4"
+					<input type="radio" name="answer${num}" value="option4"
 						id="radio_4" required><label for="radio_4">Somewhat
 						Agree </label> <br> <br>
 				</div>
 				<div class="radiogrp">
-					<input type="radio" name="answer${questions.id}" value="option5"
+					<input type="radio" name="answer${num}" value="option5"
 						id="radio_5" required><label for="radio_5">Strongly<br>Agree
 					</label> <br> <br>
 				</div>

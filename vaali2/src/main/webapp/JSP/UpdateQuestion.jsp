@@ -11,6 +11,9 @@
 
 
 </head>
+<form method="get" action="/readquestion">
+		<button type="submit" class="exitbutton">Back</button>
+	</form>
 
 <br>
 <br>
@@ -23,6 +26,8 @@ ${requestScope.questions.question_id}.<br>
 <br>
 <br>
 <input type='submit' class= "ok" name='ok' value='OK'>
+
+
 </form>
 
 </body>

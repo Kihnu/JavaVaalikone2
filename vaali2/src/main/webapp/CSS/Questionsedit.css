@@ -14,6 +14,11 @@ h1 {
 	text-shadow: 5px 5px #000000;
 }
 
+solid {
+	border-top: 3px solid #bbb;
+}
+
+
 
 h2 
 
@@ -56,6 +61,7 @@ ol {
 	padding: 10px 15px;
 	text-decoration: none;
 	font-size: 20px;
+	cursor: pointer;
 }
 
 .exitbutton {
@@ -71,6 +77,17 @@ ol {
 	width: 205px;
 	margin-left: 5px;
 	float: left;
+}
+button:hover {
+	background-color: #d35400;
+	color: white;
+}
+
+
+.ok:hover {
+	background-color: #d35400;
+	color: white;
+	
 }
 
 .form
