@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import data.AnswersC;
@@ -203,6 +204,25 @@ public class Dao {
 		}
 
 	}
+	
+	public ArrayList<Integer> readCandidateId() {
+		ArrayList<Integer> list = new ArrayList<>();
+		try {
+			Statement stmt = conn.createStatement();
+			String sql = "use vaalikone;";
+			stmt.executeUpdate(sql);
+			ResultSet RS = stmt.executeQuery("select candidate_id from candidates");
+			while (RS.next()) {
+				list.add(RS.getInt("candidate_id"));
+			}
+			System.out.println("readCandID: " + list);
+			return list;
+		} catch (SQLException e) {
+			System.out.println("Read candidate id: " + e.getMessage());
+			return null;
+		}
+
+	}
 
 	/**
 	 * Adds the calculated numbers for the candidates.
@@ -270,10 +290,11 @@ public class Dao {
 			stmt.executeUpdate(sql);
 			sql = "delete from answers where candidate_id=" + id;
 			stmt.executeUpdate(sql);
+			sql = "delete from comparison where candidate_id=" + id;
+			stmt.executeUpdate(sql);
 			sql = "delete from candidates where candidate_id=" + id;
 			stmt.executeUpdate(sql);
-			sql = "alter table candidates auto_increment = 1";
-			stmt.executeUpdate(sql);
+			autoIncrement("candidates");
 			return readAllCandidates();
 		} catch (SQLException e) {
 			System.out.println("Deletoi: " + e.getMessage());
@@ -384,17 +405,17 @@ public class Dao {
 	}
 
 	public void autoIncrement(String command) {
-		try {
-			conn = DriverManager.getConnection(url, user, pass);
-			String sql = "";
-			PreparedStatement statement = conn.prepareStatement(sql);
-			sql = "use vaalikone";
-			statement.executeUpdate(sql);
-			sql = "alter table " + command + " auto_increment = 1";
-			statement.executeUpdate(sql);
-		} catch (SQLException e) {
-			System.out.println("Auto increment: " + e.getMessage());
-		}
+//		try {
+//			conn = DriverManager.getConnection(url, user, pass);
+//			String sql = "";
+//			PreparedStatement statement = conn.prepareStatement(sql);
+//			sql = "use vaalikone";
+//			statement.executeUpdate(sql);
+//			sql = "alter table " + command + " auto_increment = 1";
+//			statement.executeUpdate(sql);
+//		} catch (SQLException e) {
+//			System.out.println("Auto increment: " + e.getMessage());
+//		}
 		
 	}
 	
@@ -411,13 +432,23 @@ public class Dao {
 			ArrayList<Candidates> candidatesList = readAllCandidates();
 			int cand;
 			int id = questionsList.size();
+			
+			ArrayList<Integer> candidateamount = new ArrayList<>();
+			
+			for (int i = 0; i < candidatesList.size(); i++) { // Etsitään suurin ID ehdokkaista
+				candidateamount = readCandidateId();
+			}
 
-			for (cand = 1; cand < candidatesList.size() + 1; cand++) {
+			System.out.println("CAND AMOUNT: " +candidateamount);
+			int candmax = Collections.max(candidateamount);
+			System.out.println("CAND MAX " + candmax);
+
+			for (cand = 0; cand < candidateamount.size(); cand++) {
 
 				try {
 					int r = rand.nextInt(5) + 1;
 
-					sql = "INSERT INTO answers (candidate_id, question_id, answer_int) VALUES (" + cand + "," + id
+					sql = "INSERT INTO answers (candidate_id, question_id, answer_int) VALUES (" + candidateamount.get(cand) + "," + id
 							+ ", " + r + ");";
 					stmt.executeUpdate(sql);
 
