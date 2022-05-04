@@ -53,7 +53,8 @@
 
 	
 
-	
+	<!--  Suoraan restiin, /rest/questionservice/deletequestion/${questions.question_id} -->
+	<!--  Pitää olla @GET metodi -->
 	<a href='../deletequestion?id=${questions.question_id}'onclick="return confirm('Are you sure you want to delete the question?')"  >Delete</a> 
 	
 	

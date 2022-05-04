@@ -25,3 +25,5 @@ buildNumber.properties
 logs
 *.log
 vaali2/target/m2e-wtp/web-resources/META-INF/maven/vaali2/vaali2/pom.properties
+vaali2/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+vaali2/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
