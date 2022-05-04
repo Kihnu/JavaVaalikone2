@@ -2,6 +2,7 @@ package app;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,7 +29,7 @@ public class Comparison extends HttpServlet {
 		String url = getServletContext().getInitParameter("connection_url_admin");
 		String user = getServletContext().getInitParameter("username");
 		String password = getServletContext().getInitParameter("passwd");
-		
+
 		dao = new Dao(url, user, password);
 		questionsvanha = new Questionsvanha();
 	}
@@ -49,7 +50,6 @@ public class Comparison extends HttpServlet {
 
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		
 	}
 
 	/**
@@ -58,11 +58,11 @@ public class Comparison extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		int number;
 
 		ArrayList<Questionsvanha> questionlist = null;
-		ArrayList<Candidates> candidates = null;
+		//ArrayList<Candidates> candidates = null;
 		ArrayList<Integer> candidateanswers = null;
 
 		ArrayList<Integer> userlist = new ArrayList<>();
@@ -72,14 +72,15 @@ public class Comparison extends HttpServlet {
 
 		if (dao.getConnection()) {
 			questionlist = dao.readAllQuestions();
-			candidates = dao.readAllCandidates();
+			//candidates = dao.readAllCandidates();
 		} else {
 			System.out.println("No connection to database");
 		}
 
-		for (int i = 0; i < questionlist.size(); i++) { // Niin kauan kun kysymyksi� riitt��, katsotaan mit� ��nest�j� on vastannut
+		for (int i = 0; i < questionlist.size(); i++) { // Niin kauan kun kysymyksi� riitt��, katsotaan mit� ��nest�j�
+														// on vastannut
 			String answer = request.getParameter("answer" + (i + 1));
-			System.out.println("kysymys " + (i+1) + " - " + answer);
+			// System.out.println("aanestaja: kysymys " + (i+1) + " - " + answer);
 			if (answer.equals("option1")) {
 				number = 1;
 			} else if (answer.equals("option2")) {
@@ -95,31 +96,47 @@ public class Comparison extends HttpServlet {
 
 		}
 
-		int id;
+		ArrayList<Integer> candidateamount = new ArrayList<>();
 
-		for (id = 1; id < candidates.size() + 1; id++) { // Lis�t��n ehdokkaiden kaikki vastaukset omiin listoihinsa
+		candidateamount = dao.readCandidateId(); // Etsitään suurin ID ehdokkaista
+
+		int candmax = Collections.max(candidateamount);
+		System.out.println("CAND MAX COMP " + candmax);
+
+		for (int id = 1; id < candmax + 1; id++) { // Lis�t��n ehdokkaiden kaikki vastaukset omiin listoihinsa
 			candidatelist = new ArrayList<>();
 			candidateanswers = dao.readCertainAnswersC(id);
 			for (int j = 0; j < candidateanswers.size(); j++) {
 				candidatelist.add(questionsvanha.getId() + j, candidateanswers.get(j));
 			}
+
 			lists.add(candidatelist);
-			//System.out.println("Ehdokas " + id + " vastaukset: " + lists.get(id - 1));
+
+			System.out.println("Ehdokas " + id + " vastaukset: " + lists.get(lists.size() - 1));
 		}
-		//System.out.println("Kayttajan vastaukset: " + userlist);
+
+		for (int loop = 0; loop < lists.size(); loop++) { // Jos vastauksia on liian vähän, niin lista poistetaan
+			if (lists.get(loop).size() < candidateanswers.size()) {
+				System.out.println("POISTOON: " + lists.get(loop));
+				lists.remove(loop);
+				loop--;
+			}
+		}
+
+		System.out.println("Kayttajan vastaukset: " + userlist);
 
 		int user_num;
 		int candid_num;
 		int sum = 0;
 		int y = 0;
-		int z= 0;
-		
+		int z = 0;
+
 		ArrayList<Integer> comparison = null;
-		
-		for (int x = 0; x < lists.size(); x++) { // ��nest�j�n vastaukset verrataan ehdokkaiden vastauksiin
+
+		for (int x = 0; x < candidateamount.size(); x++) { // ��nest�j�n vastaukset verrataan ehdokkaiden vastauksiin
 			comparison = new ArrayList<>();
 			candidatelist = lists.get(x);
-			for (y = 0; y < userlist.size(); y++ ) {
+			for (y = 0; y < userlist.size(); y++) {
 				user_num = userlist.get(y); // Otetaan k�ytt�j�n vastaus tiettyyn kysymykseen
 				candid_num = candidatelist.get(y); // Otetaan tietyn ehdokkaan vastaus samaan kysymykseen
 				int bigger = Math.max(user_num, candid_num); // Otetaan n�ist� kahdesta isompi
@@ -132,17 +149,17 @@ public class Comparison extends HttpServlet {
 			for (z = 0; z < comparison.size(); z++) { // Lis�t��n kaikki tulokset yhteen
 				sum = sum + comparison.get(z);
 			}
-			
+
 			int average = sum / comparison.size(); // Jaetaan kaikkien tuloksien summa verrattavien kohteiden m��r�ll�
-			//System.out.println("TAMA ON TULOSSA DATABASEE: " + (x+1) + " - " + average + " %");
-			dao.addComparison(x+1, average);
+			System.out.println("TAMA ON TULOSSA DATABASEE: " + candidateamount.get(x) + " - " + average + " %");
+			dao.addComparison(candidateamount.get(x), average);
 			sum = 0;
 		}
-		
-		RequestDispatcher rd=request.getRequestDispatcher("Results");
+
+		RequestDispatcher rd = request.getRequestDispatcher("Results");
 		rd.forward(request, response);
 		// ehdokkaiden vastaustietokanta
-		
+
 		// request.setAttribute("AnswersC", candidateanswers);
 		doGet(request, response);
 	}

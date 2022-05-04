@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
@@ -32,7 +33,7 @@ public class AddCandidate extends HttpServlet {
 		String url = getServletContext().getInitParameter("connection_url_admin");
 		String user = getServletContext().getInitParameter("username");
 		String password = getServletContext().getInitParameter("passwd");
-		
+
 		dao = new Dao(url, user, password);
 	}
 
@@ -79,20 +80,30 @@ public class AddCandidate extends HttpServlet {
 			ArrayList<Questionsvanha> questionsList = dao.readAllQuestions();
 			ArrayList<Candidates> candidatesList = dao.readAllCandidates();
 
-			int cand = candidatesList.size();
+			ArrayList<Integer> candidateamount = new ArrayList<>();
+
+			for (int i = 0; i < candidatesList.size(); i++) { // Etsitään suurin ID ehdokkaista
+				candidateamount = dao.readCandidateId();
+			}
+
+			int cand = Collections.max(candidateamount);
 			int ques;
-			String url = getServletContext().getInitParameter("connection_url_admin");
-			String user = getServletContext().getInitParameter("username");
-			String password = getServletContext().getInitParameter("passwd");
-			Connection conn;
 			
+//			String url = getServletContext().getInitParameter("connection_url_admin");
+//			String user = getServletContext().getInitParameter("username");
+//			String password = getServletContext().getInitParameter("passwd");
+			String url = "jdbc:mysql://localhost:3306/";
+			String user = "user";
+			String password = "password";
+			Connection conn;
+
 			try {
 				conn = DriverManager.getConnection(url, user, password);
 				String sql = "";
 				PreparedStatement stmt = conn.prepareStatement(sql);
 				sql = "use vaalikone";
 				stmt.executeUpdate(sql);
-				
+
 				Random rand = new Random();
 
 				for (ques = 1; ques < questionsList.size() + 1; ques++) {
@@ -102,9 +113,7 @@ public class AddCandidate extends HttpServlet {
 
 						sql = "INSERT INTO answers (candidate_id, question_id, answer_int) VALUES (" + cand + "," + ques
 								+ ", " + r + ");";
-						stmt.executeUpdate(sql);
-						
-						sql = "INSERT INTO comparison (candidate_id, average) VALUES (" + cand + ", 0)";
+						System.out.println("ADD CANDIDATE: " + sql);
 						stmt.executeUpdate(sql);
 
 					} catch (SQLException e) {
@@ -113,11 +122,15 @@ public class AddCandidate extends HttpServlet {
 					}
 
 				}
+
+				sql = "INSERT INTO comparison (candidate_id, average) VALUES (" + cand + ", 0)";
+				stmt.executeUpdate(sql);
+
 			} catch (SQLException e1) {
 				System.out.println("insert: " + e1.getMessage());
-				
+
 			}
-            
+
 			ArrayList<Candidates> candidates = null;
 			if (dao.getConnection()) {
 				candidates = dao.readAllCandidates();
