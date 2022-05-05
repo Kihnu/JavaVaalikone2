@@ -12,77 +12,80 @@ public class AnswersC {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int answerId;
-	private int candidateId;
-	private int questionId;
-	private int answerint;
-	private String answerstring;
+	private int answer_id;
+	private int candidate_id;
+	private int question_id;
+	private int answer_int;
+	private String answer_string;
 
-	public AnswersC(String answerId, int candidateId, int questionId, int answerint, String answerstring) {
-		setId(answerId);
-
-		setCandidateId(candidateId);
-		setQuestionId(questionId);
-		setanswerint(answerint);
-		this.answerstring = answerstring;
+	public AnswersC(String answer_id, int candidate_id, int question_id, int answer_int, String answer_string) {
+		setanswer_id(answer_id);
+		setCandidate_id(candidate_id);
+		setQuestion_id(question_id);
+		setanswer_int(answer_int);
+		this.answer_string = answer_string;
 	}
 
 	public AnswersC() {
 	}
-
-	public AnswersC(String answerId, String CandidateId, String questionId, String answerint, String answerstring) {
-		this.setId(answerId);
-		this.setCandidateId(candidateId);
-		this.setQuestionId(questionId);
-		this.setanswerint(answerint);
-		this.answerstring = answerstring;
+	
+	public AnswersC(String answer_id) {
+		this.setanswer_id(answer_id);
 	}
 
-	public int getId() {
-		return answerId;
+	public AnswersC(String answer_id, String candidate_id, String question_id, String answer_int, String answer_string) {
+		this.setanswer_id(answer_id);
+		this.setCandidate_id(candidate_id);
+		this.setQuestion_id(question_id);
+		this.setanswer_int(answer_int);
+		this.answer_string = answer_string;
 	}
 
-	public void setId(int answerId) {
-		this.answerId = answerId;
+	public int getanswer_id() {
+		return answer_id;
 	}
 
-	private void setId(String answerId) {
+	public void setanswer_id(int answer_id) {
+		this.answer_id = answer_id;
+	}
+
+	private void setanswer_id(String answer_id) {
 
 		try {
-			this.answerId = Integer.parseInt(answerId);
+			this.answer_id = Integer.parseInt(answer_id);
 		} catch (NumberFormatException | NullPointerException e) {
 			System.out.println(e.getMessage());
 		}
 
 	}
 
-	public int getCandidateId() {
-		return candidateId;
+	public int getCandidate_id() {
+		return candidate_id;
 	}
 
-	public void setCandidateId(int candidateId) {
-		this.candidateId = candidateId;
+	public void setCandidate_id(int candidate_id) {
+		this.candidate_id = candidate_id;
 	}
 
-	public void setCandidateId(String candidateId) {
+	public void setCandidate_id(String candidate_id) {
 		try {
-			this.candidateId = Integer.parseInt(candidateId);
+			this.candidate_id = Integer.parseInt(candidate_id);
 		} catch (NumberFormatException | NullPointerException e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
-	public int getQuestionId() {
-		return questionId;
+	public int getQuestion_id() {
+		return question_id;
 	}
 
-	public void setQuestionId(int questionId) {
-		this.questionId = questionId;
+	public void setQuestion_id(int question_id) {
+		this.question_id = question_id;
 	}
 
-	public void setQuestionId(String questionId) {
+	public void setQuestion_id(String question_id) {
 		try {
-			this.questionId = Integer.parseInt(questionId);
+			this.question_id = Integer.parseInt(question_id);
 		} catch (NumberFormatException | NullPointerException e) {
 			System.out.println(e.getMessage());
 		}
@@ -92,28 +95,28 @@ public class AnswersC {
 //		return answerint;
 //	}
 
-	public int getanswerint() {
-		return answerint;
+	public int getanswer_int() {
+		return answer_int;
 	}
 	
-	public void setanswerint(int answerint) {
-		this.answerint = answerint;
+	public void setanswer_int(int answer_int) {
+		this.answer_int = answer_int;
 	}
 
-	public void setanswerint(String answerint) {
+	public void setanswer_int(String answer_int) {
 		try {
-			this.answerint = Integer.parseInt(answerint);
+			this.answer_int = Integer.parseInt(answer_int);
 		} catch (NumberFormatException | NullPointerException e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
-	public String answerstring() {
-		return answerstring;
+	public String getanswer_string() {
+		return answer_string;
 	}
 
-	public void setanswerstring(String answerstring) {
-		this.answerstring = answerstring;
+	public void setanswer_string(String answer_string) {
+		this.answer_string = answer_string;
 
 	}
 

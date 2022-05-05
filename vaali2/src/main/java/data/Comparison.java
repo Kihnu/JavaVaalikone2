@@ -1,7 +1,15 @@
 package data;
 
-// Määrittää comparison tietokannan tablen arvoille getterit ja setterit
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+// Mï¿½ï¿½rittï¿½ï¿½ comparison tietokannan tablen arvoille getterit ja setterit
+@Entity
 public class Comparison {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private int comparisonID;
 	private int comparisonPercent;

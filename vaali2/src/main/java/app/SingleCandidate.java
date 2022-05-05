@@ -47,7 +47,7 @@ public class SingleCandidate extends HttpServlet {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		// Ottaa napista inputin ja sen arvolla saa ehdokkaan numeron. Tällä tiedolla voi etsiä kandidaatin kysymykset
+		// Ottaa napista inputin ja sen arvolla saa ehdokkaan numeron. Tï¿½llï¿½ tiedolla voi etsiï¿½ kandidaatin kysymykset
 		String id=request.getParameter("id");
 		ArrayList<SingleCandidateAnswers> singleCandidate = null;
 		Candidates candidates=null;

@@ -16,6 +16,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import data.AnswersC;
 import data.CandidateAnswers;
 
 @Path("/candidateanswerservice")
@@ -27,11 +28,11 @@ public class CandidateAnswerService {
 	@Path("/readcandidateanswer")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public List<CandidateAnswers> readcandidateanswer() {
-		EntityManager em = emf.createEntityManager();
+	public List<AnswersC> readcandidateanswer() {
+		EntityManager em=emf.createEntityManager();
 		em.getTransaction().begin();
 		@SuppressWarnings("unchecked")
-		List<CandidateAnswers> list = em.createQuery("select a from CandidateAnswer a").getResultList();
+		List<AnswersC> list=em.createQuery("select xyx from answers xyx").getResultList();		
 		em.getTransaction().commit();
 		return list;
 
@@ -43,7 +44,7 @@ public class CandidateAnswerService {
 	@Consumes(MediaType.APPLICATION_JSON)
 
 	// CandidateAnswers
-	public List<CandidateAnswers> addcandidateanswer(CandidateAnswers candidateanswers) {
+	public List<AnswersC> addcandidateanswer(CandidateAnswers candidateanswers) {
 
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
@@ -51,7 +52,7 @@ public class CandidateAnswerService {
 
 		em.getTransaction().commit();
 
-		List<CandidateAnswers> list = readcandidateanswer();
+		List<AnswersC> list = readcandidateanswer();
 
 		return list;
 	}
@@ -60,17 +61,17 @@ public class CandidateAnswerService {
 	@Path("/updatecandidateanswer")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public List<CandidateAnswers> updatequestion(CandidateAnswers candidateanswers) {
+	public List<AnswersC> updateanswer(CandidateAnswers candidateanswers) {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		CandidateAnswers q = em.find(CandidateAnswers.class, candidateanswers.getCandidateAnswer_id());
+		CandidateAnswers q = em.find(CandidateAnswers.class, candidateanswers.getId());
 
 		if (q != null) {
 			em.merge(candidateanswers);
 		}
 		em.getTransaction().commit();
 
-		List<CandidateAnswers> list = readcandidateanswer();
+		List<AnswersC> list = readcandidateanswer();
 		return list;
 
 	}
@@ -80,7 +81,7 @@ public class CandidateAnswerService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 
-	public List<CandidateAnswers> deletequestion(@PathParam("id") int candidateanswer_id) {
+	public List<AnswersC> deleteanswer(@PathParam("id") int candidateanswer_id) {
 
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
@@ -93,7 +94,7 @@ public class CandidateAnswerService {
 		}
 		em.getTransaction().commit();
 
-		List<CandidateAnswers> list = readcandidateanswer();
+		List<AnswersC> list = readcandidateanswer();
 
 		return list;
 	}
@@ -102,7 +103,7 @@ public class CandidateAnswerService {
 	@Path("/readtoupdatecandidateanswer/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public CandidateAnswers readtoupdatequestion(@PathParam("id") int candidateanswer_id) {
+	public CandidateAnswers readtoupdateanswer(@PathParam("id") int candidateanswer_id) {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		CandidateAnswers q = em.find(CandidateAnswers.class, candidateanswer_id);

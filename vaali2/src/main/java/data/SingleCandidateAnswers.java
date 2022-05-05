@@ -12,8 +12,9 @@ public class SingleCandidateAnswers {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int answer_int;
 	private String question;
+	private String answer_string;
 	
-	public SingleCandidateAnswers(String answer_int, String question) {
+	public SingleCandidateAnswers(String answer_int, String question, String answer_string) {
 		setAnswer_int(answer_int);
 		this.question=question;
 	}
@@ -42,6 +43,15 @@ public class SingleCandidateAnswers {
 	public void setQuestion(String question) {
 		this.question = question;
 	}
-	
 
+	public String getAnswer_string() {
+		return answer_string;
+	}
+
+	public void setAnswer_string(String answer_string) {
+		this.answer_string = answer_string;
+	}
+	
+	
+	
 }
