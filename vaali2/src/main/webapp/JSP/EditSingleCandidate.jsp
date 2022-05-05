@@ -42,7 +42,7 @@
 			</form>
 			
 			<!--  <form action="/rest/readanswers" method="post"> -->
-			<form action="/readanswers" method="post">
+			<form action="../readtoupdateanswers?id=${candidate.id}" method="get">
 				<input hidden=hidden name="id" value="${requestScope.candidate.id}"
 					readonly />
 				<button type="submit" class="button">Edit answers</button>

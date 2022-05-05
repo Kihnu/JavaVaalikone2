@@ -16,7 +16,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import data.AnswersC;
-import data.Questions;
+//import data.Questions;
 
 @Path("/answerservice")
 public class AnswerService {
@@ -31,41 +31,38 @@ public class AnswerService {
 		EntityManager em=emf.createEntityManager();
 		em.getTransaction().begin();
 		@SuppressWarnings("unchecked")
-		List<AnswersC> list=em.createQuery("select xyx from answers xyx").getResultList();		
+		List<AnswersC> list=em.createQuery("select xyx from AnswersC xyx").getResultList();
 		em.getTransaction().commit();
 		return list;
 	}
-	// Add answer
-	@POST
-	@Path("/addanswer")
+	
+	@GET
+	@Path("/readtoupdateanswers/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-
-	public List<AnswersC> addanswer(AnswersC answersc) {
-
-		EntityManager em = emf.createEntityManager();
+	public List<AnswersC> readtoupdateanswers(@PathParam("id") int candidate_id) {
+		EntityManager em=emf.createEntityManager();
 		em.getTransaction().begin();
-		em.persist(answersc);// The actual insertion line
-
+		@SuppressWarnings("unchecked")
+		List<AnswersC> list=em.createQuery("select a from AnswersC a where a.candidate_id=?1").setParameter(1, candidate_id).getResultList();
+		//AnswersC a=em.find(AnswersC.class, candidate_id);
 		em.getTransaction().commit();
-
-		List<AnswersC> list = readAnswers();
-
+		em.close();
 		return list;
 	}
 	
 	// Update answers
 	@PUT
-	@Path("/editanswers")
+	@Path("/updateanswer")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public List<AnswersC> updateAnswers(AnswersC candidateId) {
+	public List<AnswersC> updateAnswers(AnswersC candidate_id) {
 		//Dao.EditAnswers(answer);
 		EntityManager em=emf.createEntityManager();
 		em.getTransaction().begin();
-		AnswersC a=em.find(AnswersC.class, candidateId.getCandidateId());
+		AnswersC a=em.find(AnswersC.class, candidate_id.getCandidate_id());
 		if (a!=null) {
-			em.merge(candidateId);//The actual update line
+			em.merge(candidate_id);//The actual update line
 		}
 		em.getTransaction().commit();
 		List<AnswersC> list=readAnswers();		
@@ -74,7 +71,7 @@ public class AnswerService {
 	}
 	
 	@DELETE
-	@Path("/deleteanswer/{candidate_id}/{question_id}/{answer_int}")
+	@Path("/deleteanswer/{candidateId}/{questionId}/{answerint}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 
@@ -96,5 +93,23 @@ public class AnswerService {
 
 		return list;
 	}
-		
+	
+	// Add answer
+	@POST
+	@Path("/addanswer")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public List<AnswersC> addanswer(AnswersC answersc) {
+
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(answersc);// The actual insertion line
+
+		em.getTransaction().commit();
+
+		List<AnswersC> list = readAnswers();
+
+		return list;
+	}
+	
 }

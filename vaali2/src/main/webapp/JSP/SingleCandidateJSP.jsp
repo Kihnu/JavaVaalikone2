@@ -110,6 +110,8 @@
 					Strongly Agree 
 				</c:otherwise>
 			</c:choose>
+			
+			${requestScope.AnswersC.answer_string}
 		</div>
 
 	</c:forEach>

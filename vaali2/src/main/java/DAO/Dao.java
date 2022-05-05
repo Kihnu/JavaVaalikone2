@@ -162,11 +162,11 @@ public class Dao {
 			ResultSet RS = stmt.executeQuery("select * from answers");
 			while (RS.next()) {
 				AnswersC a = new AnswersC();
-				a.setId(RS.getInt("answer_id"));
-				a.setCandidateId(RS.getInt("candidate_id"));
-				a.setQuestionId(RS.getInt("question_id"));
-				a.setanswerint(RS.getInt("answer_int"));
-				a.setanswerstring(RS.getString("answer_string"));
+				a.setanswer_id(RS.getInt("answer_id"));
+				a.setCandidate_id(RS.getInt("candidate_id"));
+				a.setQuestion_id(RS.getInt("question_id"));
+				a.setanswer_int(RS.getInt("answer_int"));
+				a.setanswer_string(RS.getString("answer_string"));
 
 				list.add(a);
 			}

@@ -26,6 +26,15 @@ public class CandidateAnswers {
 		this.setanswerint(answerint);
 		this.answerstring = answerstring;
 	}
+	
+	public CandidateAnswers (String answerstring) {
+		this.answerstring = answerstring;
+	}
+	
+	public CandidateAnswers (String answerId, String answerstring) {
+		this.setId(answerId);
+		this.answerstring = answerstring;
+	}
 
 	public int getId() {
 		return answerId;
