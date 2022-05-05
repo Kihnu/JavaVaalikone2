@@ -9,54 +9,101 @@ import javax.persistence.Id;
 public class CandidateAnswers {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int candidateanswer_id;
-	private String candidateanswer;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)   // Tablen nimi "Answers"
+	private int answerId;
+	private int candidateId;
+	private int questionId;
+	private int answerint;
+	private String answerstring;
 	
 	public CandidateAnswers() {
 	}
 	
-	public CandidateAnswers(String candidateanswer) {
-		this.candidateanswer = candidateanswer; 
-	}
-	
-	public CandidateAnswers(int candidateanswer_id, String candidateanswer) {
-		this.candidateanswer_id = candidateanswer_id;
-		this.candidateanswer = candidateanswer; 
-	}
-	
-	public CandidateAnswers(String candidateanswer_id, String candidateanswer) {
-		this.setCandidateAnswer_id(candidateanswer_id);
-		this.candidateanswer = candidateanswer;
+	public CandidateAnswers(String answerId, String CandidateId, String questionId, String answerint, String answerstring) {
+		this.setId(answerId);
+		this.setCandidateId(candidateId);
+		this.setQuestionId(questionId);
+		this.setanswerint(answerint);
+		this.answerstring = answerstring;
 	}
 
-	public int getCandidateAnswer_id() {
-		return candidateanswer_id;
+	public int getId() {
+		return answerId;
 	}
-	
-	public void setCandidateAnswer_id(int candidateanswer_id) {
-		this.candidateanswer_id = candidateanswer_id;
+
+	public void setId(int answerId) {
+		this.answerId = answerId;
 	}
-	
-	public void setCandidateAnswer_id(String candidateanswer_id) {
+
+	private void setId(String answerId) {
+
 		try {
-			this.candidateanswer_id = Integer.parseInt(candidateanswer_id);
+			this.answerId = Integer.parseInt(answerId);
+		} catch (NumberFormatException | NullPointerException e) {
+			System.out.println(e.getMessage());
 		}
-		catch (NumberFormatException | NullPointerException e) {
-			//Do nothing - the value is not changed
+
+	}
+
+	public int getCandidateId() {
+		return candidateId;
+	}
+
+	public void setCandidateId(int candidateId) {
+		this.candidateId = candidateId;
+	}
+
+	public void setCandidateId(String candidateId) {
+		try {
+			this.candidateId = Integer.parseInt(candidateId);
+		} catch (NumberFormatException | NullPointerException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
-	public String getCandidateAnswer() {
-		return candidateanswer;
+	public int getQuestionId() {
+		return questionId;
+	}
+
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
+	}
+
+	public void setQuestionId(String questionId) {
+		try {
+			this.questionId = Integer.parseInt(questionId);
+		} catch (NumberFormatException | NullPointerException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+//	public int answerint() {
+//		return answerint;
+//	}
+
+	public int getanswerint() {
+		return answerint;
 	}
 	
-
-	public void setCandidateAnswer(String candidateanswer) {
-		this.candidateanswer = candidateanswer;
+	public void setanswerint(int answerint) {
+		this.answerint = answerint;
 	}
 
-	public String toString() {
-		return this.candidateanswer_id+": "+this.candidateanswer;
+	public void setanswerint(String answerint) {
+		try {
+			this.answerint = Integer.parseInt(answerint);
+		} catch (NumberFormatException | NullPointerException e) {
+			System.out.println(e.getMessage());
+		}
 	}
+
+	public String answerstring() {
+		return answerstring;
+	}
+
+	public void setanswerstring(String answerstring) {
+		this.answerstring = answerstring;
+
+	}
+
 }
