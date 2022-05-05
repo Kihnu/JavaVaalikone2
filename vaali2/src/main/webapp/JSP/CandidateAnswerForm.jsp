@@ -5,12 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href=CSS/Questionsedit.css>
 <title>Edit the Candidates Answers here!</title>
 </head>
 
 <body>
 	<!--  Button to admin main -->
-	<form method="get" action="/AdminMain">
+	<form method="get" action="/AdminCandidates">
 		<button type="submit" class="exitbutton">Back to Admin page</button>
 	</form>
 

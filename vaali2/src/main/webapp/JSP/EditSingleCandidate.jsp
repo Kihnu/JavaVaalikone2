@@ -47,11 +47,6 @@
 					readonly />
 				<button type="submit" class="button">Edit answers</button>
 			</form>
-			<form action="/rest/readcanswers" method="post">
-				<input hidden=hidden name="id" value="${requestScope.candidate.id}"
-					readonly />
-				<button type="submit" class="button">Edit Answers Test</button>
-			</form>
 			
 
 			<form action="/DeleteCandidate" method="post">
