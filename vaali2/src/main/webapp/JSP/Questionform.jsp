@@ -11,6 +11,18 @@
 
 
 <title>Edit the questions!</title>
+
+
+
+<script>
+
+function validateForm(f) {
+  if (f.value != "") {
+     alert("New question added!");
+  }
+</script>
+
+
 </head>
 
 <form method="get" action="/AdminMain">
@@ -27,20 +39,20 @@
 
 	<div>
 
-		<form action='../addquestion' class="form" method='post'>
+		<form action='../addquestion' name="form" class="form" method='post'onSubmit="validateForm(form.OK)">
 			<h2>Add question</h2>
 			<textarea rows="3" cols="100" name="question" required></textarea>
 
-			<br> <br> <input type='submit' class="ok" name='ok'
-				value='OK' onclick="return alert('New question added!')">
+			<br> <br> <input type='submit' name = "OK" class="ok" name='ok'
+				value='OK' >
 
-		</form>
-	</div>
+			</form>
+		</div>
 
-	<ol>
+		<ol>
 		<c:forEach var="questions" items="${requestScope.questionlist}">
 			<br>
-	${questions.question_id}. ${questions.question} 
+		${questions.question_id}. ${questions.question} 
 
 	<br>
 
