@@ -79,8 +79,9 @@ public class QuestionService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 
+	// Request dispatcher tänne ainakin
 	public List<Questions> deletequestion(@PathParam("id") int question_id) {
-
+		
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		Questions q = em.find(Questions.class, question_id);
