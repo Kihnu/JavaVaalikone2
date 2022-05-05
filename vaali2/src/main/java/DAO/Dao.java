@@ -479,4 +479,20 @@ public class Dao {
 		}
 	}
 
+	public ArrayList<Candidates> deleteAnswer(String answer_id) {
+		try {
+			conn = DriverManager.getConnection(url, user, pass);
+			Statement stmt = conn.createStatement();
+			String sql = "use vaalikone;";
+			stmt.executeUpdate(sql);
+			sql = "delete from answers where answer_id=" + answer_id;
+			stmt.executeUpdate(sql);
+			return readAllCandidates();
+		} catch (SQLException e) {
+			System.out.println("Deletoi kyssäri: " + e.getMessage());
+			return null;
+		}
+		
+	}
+
 }

@@ -6,18 +6,23 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import data.AnswersC;
+import data.Questions;
 
 @Path("/answerservice")
 public class AnswerService {
 	
 	EntityManagerFactory emf=Persistence.createEntityManagerFactory("vaali2");
+	
 	@GET
 	@Path("/readanswers")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -30,9 +35,28 @@ public class AnswerService {
 		em.getTransaction().commit();
 		return list;
 	}
+	// Add answer
+	@POST
+	@Path("/addanswer")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+
+	public List<AnswersC> addanswer(AnswersC answersc) {
+
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.persist(answersc);// The actual insertion line
+
+		em.getTransaction().commit();
+
+		List<AnswersC> list = readAnswers();
+
+		return list;
+	}
 	
+	// Update answers
 	@PUT
-	@Path("/EditAnswers")
+	@Path("/editanswers")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public List<AnswersC> updateAnswers(AnswersC candidateId) {
@@ -47,6 +71,30 @@ public class AnswerService {
 		List<AnswersC> list=readAnswers();		
 		return list;
 		
+	}
+	
+	@DELETE
+	@Path("/deleteanswer/{candidate_id}/{question_id}/{answer_int}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+
+	// Request dispatcher tänne ainakin
+	public List<AnswersC> deleteanswer(@PathParam("id") int answer_id) {  // tätä miettiä, 
+		
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		AnswersC a = em.find(AnswersC.class, answer_id);
+
+		if (a != null) {
+
+			em.remove(a);
+
+		}
+		em.getTransaction().commit();
+
+		List<AnswersC> list = readAnswers();
+
+		return list;
 	}
 		
 }
