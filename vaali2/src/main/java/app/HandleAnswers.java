@@ -24,8 +24,7 @@ import data.Questions;
 import DAO.Dao;
 
 
-//@WebServlet(urlPatterns = {"addanswers", "/editanswers", "/deleteanswers", "/readanswers"})
-@WebServlet(urlPatterns = {"addanswers", "/editanswers", "/readanswers"})
+@WebServlet(urlPatterns = {"addanswers", "/editanswers", "/readanswers", "/deleteanswers"})
 public class HandleAnswers extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -185,24 +184,24 @@ public class HandleAnswers extends HttpServlet {
 		return returnedList;
 	}
 	
-//	// POISTETAAN Vastaus
-//
-//	private List<AnswersC> deleteanswer(HttpServletRequest request) {
-//		String answer_id = request.getParameter("id");
-//		String uri = "http://127.0.0.1:8080/rest/answerservice/answerquestion/" + answer_id;
-//		Client c = ClientBuilder.newClient();
-//		WebTarget wt = c.target(uri);
-//		Builder b = wt.request();
-//		// Create a GenericType to be able to get List of objects
-//		// This will be the second parameter of post method
-//		GenericType<List<AnswersC>> genericList = new GenericType<List<AnswersC>>() {
-//		};
-//
-//		// Posting data (Entity<ArrayList<DogBreed>> e) to the given address
-//		List<AnswersC> returnedList = b.delete(genericList);
-//		//dao.deleteQuestion(question_id);
-//		dao.deleteAnswer(answer_id);
-//		return returnedList;
-//	}
+	// POISTETAAN Vastaus
+
+	private List<AnswersC> deleteanswer(HttpServletRequest request) {
+		String answer_id = request.getParameter("id");
+		String uri = "http://127.0.0.1:8080/rest/answerservice/answerquestion/" + answer_id;
+		Client c = ClientBuilder.newClient();
+		WebTarget wt = c.target(uri);
+		Builder b = wt.request();
+		// Create a GenericType to be able to get List of objects
+		// This will be the second parameter of post method
+		GenericType<List<AnswersC>> genericList = new GenericType<List<AnswersC>>() {
+		};
+
+		// Posting data (Entity<ArrayList<DogBreed>> e) to the given address
+		List<AnswersC> returnedList = b.delete(genericList);
+		//dao.deleteQuestion(question_id);
+		dao.deleteAnswer(answer_id);
+		return returnedList;
+	}
 
 }
