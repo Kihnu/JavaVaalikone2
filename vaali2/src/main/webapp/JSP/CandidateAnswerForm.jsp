@@ -29,7 +29,7 @@
 					name="candidate_id" />
 				<input hidden="hidden" readonly value="${answers.answer_id}"
 					name="answer_id" />
-				<br>Question: <input readonly value="${answers.question_id}"
+				<br>${answers.questions.question} <input readonly hidden="hidden" value="${answers.questions.question}"
 					name="question_id" />
 				<br>Answer: <input value="${answers.answer_int}"
 					name="answer_int" />
