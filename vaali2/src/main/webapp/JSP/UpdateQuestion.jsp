@@ -20,7 +20,7 @@
  <h1>Update Question:</h1>
 <body>
 <form  class= "form" action='../updatequestion' method='post' >
-${requestScope.questions.question_id}.<br>
+<input hidden="hidden" value="${requestScope.questions.question_id}" name="id"/><br>
 <br>
 <textarea rows="3" cols="55" name="question" required>${requestScope.questions.question} </textarea>
 <br>

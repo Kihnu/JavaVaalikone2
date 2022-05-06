@@ -103,7 +103,9 @@ public class AdminRefresh extends HttpServlet {
 
 				// Vastaus tablen luonti
 				sql = "CREATE TABLE answers (answer_id int(5) NOT NULL AUTO_INCREMENT, candidate_id int(3) NOT NULL, "
-						+ "question_id int(3) NOT NULL, answer_int int(1) NOT NULL, answer_string varchar(600), PRIMARY KEY (answer_id));";
+						+ "question_id int(3) NOT NULL, answer_int int(1) NOT NULL, answer_string varchar(600), "
+						+ "PRIMARY KEY (answer_id), FOREIGN KEY (candidate_id) REFERENCES candidates(candidate_id) ON DELETE CASCADE, "
+						+ "FOREIGN KEY (question_id) REFERENCES questions(question_id) ON DELETE CASCADE);";
 				statement.executeUpdate(sql);
 
 				// Vertailu tablen luonti

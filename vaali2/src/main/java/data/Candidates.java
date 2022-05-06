@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Candidates {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int candidate_id;
 	private String firstname;
 	private String surname;
 	private String party;
@@ -34,14 +34,14 @@ public class Candidates {
 	
 	}
 	public int getId() {
-		return id;
+		return candidate_id;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.candidate_id = id;
 	}
 	public void setId(String id) {
 		try {
-			this.id = Integer.parseInt(id);
+			this.candidate_id = Integer.parseInt(id);
 		}
 		catch(NumberFormatException | NullPointerException e) {
 			System.out.println(e.getMessage());
