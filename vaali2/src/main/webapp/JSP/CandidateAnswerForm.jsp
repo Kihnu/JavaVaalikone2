@@ -18,9 +18,6 @@
 
 	<h1>Edit Answers</h1>
 
-
-
-
 	<form method="get" action="../updateanswer">
 		<ol>
 			<c:forEach var="answers" items="${requestScope.answerlist}">
@@ -29,16 +26,16 @@
 					name="candidate_id" />
 				<input hidden="hidden" readonly value="${answers.answer_id}"
 					name="answer_id" />
-				<br>${answers.questions.question} <input readonly hidden="hidden" value="${answers.questions.question}"
-					name="question_id" />
-				<br>Answer: <input value="${answers.answer_int}"
+				<br>${answers.questions.question} <input readonly
+					hidden="hidden" value="${answers.question_id}" name="question_id" />
+				<br>Answer: <input type="number" min="1" max="5" value="${answers.answer_int}"
 					name="answer_int" />
 				<br>
 				<textarea rows="3" cols="55" name="answer">${answers.answer_string}</textarea>
 			</c:forEach>
 		</ol>
 		<br>
-		<button type="submit" class="button">Update</button>
+		<button type="submit" class="updatebutton">Update</button>
 	</form>
 
 
