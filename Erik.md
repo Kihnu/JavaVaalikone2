@@ -2,9 +2,8 @@
 
 ## Rest
 
-rest/CandidateAnswerService  \
-
-rest/AnswerService  \
+rest/CandidateAnswerService\
+rest/AnswerService  
 
 ## JPA
 
