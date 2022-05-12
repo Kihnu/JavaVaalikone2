@@ -1,11 +1,16 @@
-# Tiedostot
+# Penan kurssilla
 
 ## Rest
 
+rest/CandidateAnswerService
+rest/AnswerService
 
 ## JPA
 
+
+
 -----------------------------------------
+# Tommin kurssilla
 
 ## Servlet
 SingleCandidate.java\
