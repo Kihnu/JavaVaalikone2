@@ -1,13 +1,15 @@
 # Markdown
 
-## Rest
-
 rest/CandidateAnswerService\
-rest/AnswerService  
+rest/AnswerService  (I helped a little)
 
-## JPA
-DAO tiedostossa
+HandleAnswers.java (Helped)\
+AnswersC (Helped a little)
 
+
+CandidateAnswerForm.jsp
+
+Did some changes in pom.xml and web.xml
 
 -----------------------------------------
 # Tommin kurssilla
