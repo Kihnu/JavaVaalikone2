@@ -113,6 +113,7 @@ public class HandleAnswers extends HttpServlet {
 		WebTarget wt = c.target(uri);
 		Builder b = wt.request();
 		Entity<AnswersC> e = Entity.entity(a,MediaType.APPLICATION_JSON);
+
 		GenericType<List<AnswersC>> genericList = new GenericType<List<AnswersC>>() {};
 		
 		List<AnswersC> returnedList = b.put(e, genericList);
