@@ -105,18 +105,19 @@ public class HandleAnswers extends HttpServlet {
 		List<AnswersC> returnedList = b.get(genericList);
 		return returnedList;
 	}
-	
+
 	private List<AnswersC> updateanswer(HttpServletRequest request) {
-		AnswersC a=new AnswersC(request.getParameter("answer_id"), request.getParameter("candidate_id"), request.getParameter("question_id"), request.getParameter("answer_int"), request.getParameter("answer"));
+		AnswersC a = new AnswersC(request.getParameter("answer_id"), request.getParameter("candidate_id"), request.getParameter("question_id"), request.getParameter("answer_int"), request.getParameter("answer"));
 		String uri = "http://127.0.0.1:8080/rest/answerservice/updateanswer";
-		Client c=ClientBuilder.newClient();
-		WebTarget wt=c.target(uri);
-		Builder b=wt.request();
-		Entity<AnswersC> e=Entity.entity(a,MediaType.APPLICATION_JSON);
+		Client c = ClientBuilder.newClient();
+		WebTarget wt = c.target(uri);
+		Builder b = wt.request();
+		Entity<AnswersC> e = Entity.entity(a,MediaType.APPLICATION_JSON);
 		GenericType<List<AnswersC>> genericList = new GenericType<List<AnswersC>>() {};
 		
-		List<AnswersC> returnedList=b.put(e, genericList);
+		List<AnswersC> returnedList = b.put(e, genericList);
 		return returnedList;
+
 	}
 
 }
