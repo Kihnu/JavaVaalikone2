@@ -7,7 +7,18 @@ User: admin
 Password: 1234
  
  
+ 
 ### Miten ladata tietokanta koneelle?
+
+Laittaa nämä komennot MySQL:äänn
+
+CREATE vaalikone;
+
+CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
+
+GRANT ALL PRIVILEGES ON vaalikone.* TO 'user'@'localhost';
+
+### Tietokantaan saa taulut painamalla admin sivulta panic buttonia
 
 ![image](https://user-images.githubusercontent.com/67522407/168488335-1063f18c-9277-4ad3-ad89-2a98207c601c.png)
 
