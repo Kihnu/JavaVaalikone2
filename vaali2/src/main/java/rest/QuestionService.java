@@ -18,11 +18,24 @@ import javax.ws.rs.core.MediaType;
 
 import data.Questions;
 
+
+
+/**
+ * @author Toni, Erik & Janette
+ *
+ */
+
 @Path("/questionservice")
 public class QuestionService {
 
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("vaali2");
 
+	
+	
+	
+	/** Reads all the questions from the database.
+	 * @return returns every question to a list.
+	 */
 	@GET
 	@Path("/readquestion")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -37,6 +50,10 @@ public class QuestionService {
 
 	}
 
+	
+	/** Adds a question to the database.
+	 * @return returns every question to a list.
+	 */
 	@POST
 	@Path("/addquestion")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -54,7 +71,11 @@ public class QuestionService {
 
 		return list;
 	}
-
+	
+	
+	/** Updates question based on id.
+	 * @return returns every question to a list.
+	 */
 	@PUT
 	@Path("/updatequestion")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -74,6 +95,10 @@ public class QuestionService {
 
 	}
 
+	
+	/** Deletes question from database.
+	 * @return returns every question to a list.
+	 */
 	@DELETE
 	@Path("/deletequestion/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -97,6 +122,10 @@ public class QuestionService {
 
 		return list;
 	}
+	
+	/** Reads one question based on id.
+	 * @return returns every question to a list.
+	 */
 
 	@GET
 	@Path("/readtoupdatequestion/{id}")

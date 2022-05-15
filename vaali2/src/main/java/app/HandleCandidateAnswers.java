@@ -20,6 +20,13 @@ import javax.ws.rs.core.MediaType;
 import DAO.Dao;
 import data.CandidateAnswers;
 
+
+
+/**
+ * @author Toni, Erik & Janette
+ *
+ */
+
 @WebServlet(urlPatterns = { "/addcandidateanswer", "/deletecandidateanswer", "/updatecandidateanswer", "/readcandidateanswer",
 		"/readtoupdatecandidateanswer" })
 public class HandleCandidateAnswers extends HttpServlet {

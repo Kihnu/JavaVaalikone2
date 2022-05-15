@@ -16,11 +16,21 @@ import javax.ws.rs.core.MediaType;
 import data.AnswersC;
 //import data.Questions;
 
+
+/**
+ * @author Toni, Erik & Janette
+ *
+ */
 @Path("/answerservice")
 public class AnswerService {
 	
 	EntityManagerFactory emf=Persistence.createEntityManagerFactory("vaali2");
 	
+	
+	
+	/** Reads all the answers from the database.
+	 * @return returns every answer to a list.
+	 */
 	@GET
 	@Path("/readanswers")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -33,6 +43,11 @@ public class AnswerService {
 		em.getTransaction().commit();
 		return list;
 	}
+	
+	
+	/** Reads one answer based on id.
+	 * @return returns every question to a list.
+	 */
 	
 	@GET
 	@Path("/readtoupdateanswers/{id}")
@@ -49,7 +64,9 @@ public class AnswerService {
 		return list;
 	}
 	
-	// Update answers
+	/** Updates one question based on id.
+	 * @return returns every question to a list.
+	 */
 	@PUT
 	@Path("/updateanswer")
 	@Produces(MediaType.APPLICATION_JSON)

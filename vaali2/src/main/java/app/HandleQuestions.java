@@ -20,6 +20,14 @@ import javax.ws.rs.core.MediaType;
 import DAO.Dao;
 import data.Questions;
 
+
+
+
+/**
+ * @author Toni, Erik & Janette
+ *
+ */
+
 @WebServlet(urlPatterns = { "/addquestion", "/deletequestion", "/updatequestion", "/readquestion",
 		"/readtoupdatequestion" })
 public class HandleQuestions extends HttpServlet {
