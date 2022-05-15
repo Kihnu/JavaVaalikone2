@@ -1,13 +1,13 @@
 # JavaVaalikone2
 
-## Admin sivun 
+## Admin sivun kirjautumistunnukset
 
 User: admin
 
 Password: 1234
-
-
-
+ 
+ 
+ 
 
 
 
